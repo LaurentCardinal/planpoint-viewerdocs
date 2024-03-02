@@ -62,7 +62,10 @@
         "welcome",
         "checklist",
         "settings",
-        "exterior"
+        "exterior",
+        "units",
+        "floors",
+        "preview-embed"
       ]
     },
     {
