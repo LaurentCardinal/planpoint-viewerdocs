@@ -31,11 +31,11 @@
   "tabs": [
     {
       "name": "API",
-      "url": "api-reference"
+      "url": "/api-reference"
     },
     {
       "name": "SDK",
-      "url": "snippets"
+      "url": "/snippets"
     }
   ],
   "anchors": [
