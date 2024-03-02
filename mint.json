@@ -27,8 +27,12 @@
   },
   "tabs": [
     {
-      "name": "API 2",
+      "name": "API",
       "url": "api-reference/introduction"
+    },
+    {
+      "name": "SDK",
+      "url": "api-reference/endpoint/create"
     }
   ],
   "anchors": [
