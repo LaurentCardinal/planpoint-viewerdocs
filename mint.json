@@ -47,8 +47,8 @@
       "url": "https://www.planpoint.io/"
     },
     {
-      "name": "Community",
-      "icon": "slack",
+      "name": "Support",
+      "icon": "envelope-dot",
       "url": "https://mintlify.com/community"
     }
   ],
