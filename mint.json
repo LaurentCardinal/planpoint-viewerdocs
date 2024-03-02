@@ -76,6 +76,18 @@
       ]
     },
     {
+      "group": "API",
+      "pages": [
+        "api-reference/introduction"
+      ]
+    },
+    {
+      "group": "SDK",
+      "pages": [
+        "snippets/introduction"
+      ]
+    },
+    {
       "group": "Endpoint Examples",
       "pages": [
         "api-reference/endpoint/get",
