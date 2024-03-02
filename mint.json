@@ -31,11 +31,11 @@
   "tabs": [
     {
       "name": "API",
-      "url": "https://viewerdocs.planpoint.io/api-reference/introduction"
+      "url": "api-reference/introduction"
     },
     {
       "name": "SDK",
-      "url": "https://viewerdocs.planpoint.io/snippets/introduction"
+      "url": "snippets/introduction"
     }
   ],
   "anchors": [
