@@ -76,18 +76,6 @@
       ]
     },
     {
-      "group": "API",
-      "pages": [
-        "api-documentation/introduction"
-      ]
-    },
-    {
-      "group": "SDK",
-      "pages": [
-        "snippets/introduction"
-      ]
-    },
-    {
       "group": "Endpoint Examples",
       "pages": [
         "api-documentation/endpoint/get",
