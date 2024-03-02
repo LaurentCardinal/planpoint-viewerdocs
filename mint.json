@@ -33,9 +33,9 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "News",
+      "icon": "newspaper",
+      "url": "https://www.planpoint.io/new-releases/updates"
     },
     {
       "name": "Community",
@@ -43,9 +43,9 @@
       "url": "https://mintlify.com/community"
     },
     {
-      "name": "News",
-      "icon": "newspaper",
-      "url": "https://www.planpoint.io/new-releases/updates"
+      "name": "Main website",
+      "icon": "globe",
+      "url": "https://www.planpoint.io/"
     }
   ],
   "navigation": [
