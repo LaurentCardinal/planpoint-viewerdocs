@@ -18,17 +18,17 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:support@planpoint.io"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.planpoint.io/loginm"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "API",
+      "url": "viewer-api"
     }
   ],
   "anchors": [
@@ -43,16 +43,16 @@
       "url": "https://mintlify.com/community"
     },
     {
-      "name": "Blog",
+      "name": "News",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.planpoint.io/new-releases/updates"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Documentation",
       "pages": [
-        "introduction",
+        "welcome",
         "quickstart",
         "development"
       ]
