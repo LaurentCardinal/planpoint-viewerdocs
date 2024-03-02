@@ -15,6 +15,9 @@
       "to": "#f0f2f4"
     }
   },
+  "primaryTab": {
+    "name": "General"
+},
   "topbarLinks": [
     {
       "name": "Support",
