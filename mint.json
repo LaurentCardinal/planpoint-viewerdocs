@@ -38,15 +38,15 @@
       "url": "https://www.planpoint.io/new-releases/updates"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
       "name": "Main website",
       "icon": "globe",
       "url": "https://www.planpoint.io/"
     }
+    {
+      "name": "Community",
+      "icon": "slack",
+      "url": "https://mintlify.com/community"
+    },
   ],
   "navigation": [
     {
