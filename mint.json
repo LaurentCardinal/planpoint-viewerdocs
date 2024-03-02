@@ -23,12 +23,12 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://app.planpoint.io/loginm"
+    "url": "https://app.planpoint.io/login"
   },
   "tabs": [
     {
       "name": "API",
-      "url": "viewer-api"
+      "url": "api-reference/introduction"
     }
   ],
   "anchors": [
@@ -66,12 +66,6 @@
         "essentials/settings",
         "essentials/navigation",
         "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
       ]
     },
     {
