@@ -78,13 +78,7 @@
     {
       "group": "API",
       "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "SDK",
-      "pages": [
-        "snippets/introduction"
+        "api-reference"
       ]
     },
     {
