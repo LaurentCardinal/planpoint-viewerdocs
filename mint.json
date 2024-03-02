@@ -73,17 +73,17 @@
       "pages": [
         "edit-info",
         "members",
-        "multi-phase"
+        "multi-phase",
+        "colors"
       ]
     },
     {
       "group": "Advanced Features",
       "pages": [
-        "essentials/markdown",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "enterprise",
+        "360",
+        "amenities-parkings",
+        "allocations"
       ]
     },
     {
