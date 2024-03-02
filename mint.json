@@ -71,9 +71,9 @@
     {
       "group": "Editing and Management",
       "pages": [
+        "edit-info",
         "members",
-        "multi-phase",
-        "edit-info"
+        "multi-phase"
       ]
     },
     {
