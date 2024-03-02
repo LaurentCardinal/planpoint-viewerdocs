@@ -52,7 +52,7 @@
     {
       "group": "Documentation",
       "pages": [
-        "introduction",
+        "welcome",
         "quickstart",
         "development"
       ]
