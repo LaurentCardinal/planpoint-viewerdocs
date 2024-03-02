@@ -71,11 +71,9 @@
     {
       "group": "Editing and Management",
       "pages": [
-        "essentials/markdown",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "members",
+        "multi-phase",
+        "edit-info"
       ]
     },
     {
