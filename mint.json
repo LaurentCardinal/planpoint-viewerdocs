@@ -31,11 +31,11 @@
   "tabs": [
     {
       "name": "API",
-      "url": "api-reference/introduction"
+      "url": "api-documentation/introduction"
     },
     {
       "name": "SDK",
-      "url": "snippets/introduction"
+      "url": "sdk-documentation/introduction"
     }
   ],
   "anchors": [
@@ -78,7 +78,7 @@
     {
       "group": "API",
       "pages": [
-        "api-reference/introduction"
+        "api-documentation/introduction"
       ]
     },
     {
@@ -90,15 +90,15 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-documentation/endpoint/get",
+        "api-documentation/endpoint/create",
+        "api-documentation/endpoint/delete"
       ]
     }
   ],
   "footerSocials": {
-    "instagram": "https://twitter.com/",
-    "linkedin": "https://www.linkedin.com/",
+    "instagram": "https://www.instagram.com/planpoint.io/",
+    "linkedin": "https://www.linkedin.com/company/68575632/",
     "github": "https://github.com/"
   }
 }
