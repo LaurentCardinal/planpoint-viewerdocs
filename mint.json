@@ -76,6 +76,16 @@
       ]
     },
     {
+      "group": "Advanced Features",
+      "pages": [
+        "essentials/markdown",
+        "essentials/images",
+        "essentials/settings",
+        "essentials/navigation",
+        "essentials/reusable-snippets"
+      ]
+    },
+    {
       "group": "Endpoint Examples",
       "pages": [
         "api-documentation/endpoint/get",
