@@ -28,11 +28,11 @@
   "tabs": [
     {
       "name": "API",
-      "url": "api-reference/introduction"
+      "url": "api-reference"
     },
     {
       "name": "SDK",
-      "url": "api-reference/endpoint/create"
+      "url": "api-reference/endpoint"
     }
   ],
   "anchors": [
