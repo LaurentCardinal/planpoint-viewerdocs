@@ -33,7 +33,7 @@
   ],
   "anchors": [
     {
-      "name": "News",
+      "name": "New releases",
       "icon": "newspaper",
       "url": "https://www.planpoint.io/new-releases/updates"
     },
