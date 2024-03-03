@@ -30,6 +30,38 @@ const renderContext = Planpoint.createRenderContext();
 await renderContext.render(app);
 ```
 
+## Event management
+
+An example listener configuration looks like this:
+
+```JavaScript JavaScript
+import * as Planpoint from 'planpoint-sdk';
+import { Project } from 'planpoint-sdk/core';
+const handleStageHover = ({ floorId }) => { /* ... */ }
+const handleStageClick = ({ floorId }) => { /* ... */ }
+const handleFilter = ({ name, valueBefore, valueAfter }) => { /* ... */ }
+const handleViewSwitch = ({ oldView, newView }) => { /* ... */ }
+const handleListHover = ({ floorId }) => { /* ... */ }
+const handleListClick = ({ floorId }) => { /* ... */ }
+const listenerConfig = {
+        stage: {
+                hover: handleStageHover,
+                click: handleStageClick
+}, filter: {
+},
+click: handleFilter,
+        view: {
+                click: handleViewSwitch,
+}, entity: {
+                hover: handleListHover,
+                click: handleListClick
+} }
+const app = <Project id="602e27b829f590001f83a5a2" listeners=
+{listenerConfig} />
+const renderContext = Planpoint.createRenderContext();
+await renderContext.render(app);
+```
+
 ## Welcome
 
 There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
