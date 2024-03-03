@@ -1,12 +1,23 @@
 ---
 title: 'Introduction'
-description: 'In this section, we will be showcasing our API endpoints'
+description: 'In this section, we will be exploring public RESTful API.'
 ---
 
 <Note>
   If you're not looking to build API reference documentation, you can delete
   this section by removing the api-reference folder.
 </Note>
+
+## Endpoints
+
+The Planpoint API features endpoints for every common items of the Planpoint Viewer.
+
+```JavaScript
+api.schedule(function(done) {
+  performCalculations();
+  done();
+}, "when-idle");
+```
 
 ## Welcome
 
@@ -19,14 +30,3 @@ There are two ways to build API documentation: [OpenAPI](https://mintlify.com/do
 >
   View the OpenAPI specification file
 </Card>
-
-## Endpoints
-
-The Planpoint API features endpoints for every common items of the Planpoint Viewer.
-
-```JavaScript
-api.schedule(function(done) {
-  performCalculations();
-  done();
-}, "when-idle");
-```
