@@ -20,25 +20,13 @@ There are two ways to build API documentation: [OpenAPI](https://mintlify.com/do
   View the OpenAPI specification file
 </Card>
 
-## React components
+## Endpoints
 
-The Planpoint SDK is sending pre-configured React components that allow for easy rendering. It requires the ID of a project that has previously been configured in the dashboard.
-
-
-```JavaScript
-import * as Planpoint from 'planpoint-sdk';
-import { Project } from 'planpoint-sdk/core';
-const app = <Project id="602e27b829f590001f83a5a2" />
-const renderContext = Planpoint.createRenderContext();
-await renderContext.render(app);
-```
-
-You can also load a single unit like this:
+The Planpoint API features endpoints for every common items of the Planpoint Viewer.
 
 ```JavaScript
-import * as Planpoint from 'planpoint-sdk';
-import { Unit } from 'planpoint-sdk/core';
-const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
-const renderContext = Planpoint.createRenderContext();
-await renderContext.render(app);
+api.schedule(function(done) {
+  performCalculations();
+  done();
+}, "when-idle");
 ```

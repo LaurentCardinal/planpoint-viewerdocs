@@ -20,14 +20,25 @@ There are two ways to build API documentation: [OpenAPI](https://mintlify.com/do
   View the OpenAPI specification file
 </Card>
 
-## Authentication
+## React components
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+The Planpoint SDK is sending pre-configured React components that allow for easy rendering. It requires the ID of a project that has previously been configured in the dashboard. Loading a project looks like this:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+
+```JavaScript JavaScript
+import * as Planpoint from 'planpoint-sdk';
+import { Project } from 'planpoint-sdk/core';
+const app = <Project id="602e27b829f590001f83a5a2" />
+const renderContext = Planpoint.createRenderContext();
+await renderContext.render(app);
+```
+
+You can also load a single unit like this:
+
+```JavaScript JavaScript
+import * as Planpoint from 'planpoint-sdk';
+import { Unit } from 'planpoint-sdk/core';
+const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
+const renderContext = Planpoint.createRenderContext();
+await renderContext.render(app);
 ```
