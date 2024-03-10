@@ -1,41 +1,22 @@
 ---
 title: 'Floors'
-description: 'This article describes how to create a plan viewer with Planpoint starting with the first module: the general settings.'
+descriptions: 'This section enables you to view the various floors within the project, displaying their respective units and floor plans. It also allows you to draw the corresponding polygons for each unit.'
 ---
 
-<Note>**Prerequisite** You should have all your content already prepared. For more details about the content, please read the [checklist](/checklist).</Note>
+- Selecting the **floorplan** option will grant you access to the corresponding floor plan for each floor. You can also update the floor plan here.
 
+<Frame>
+  <img src="https://i.postimg.cc/WzZNRMMj/floors.jpg" />
+</Frame>
 
-<Steps>
-  <Step title="Step 1">
-    Click on the + button on the upper left side of the dashboard.
-  </Step>
-  <Step title="Step 2">
-    These are instructions or content that only pertain to the second step.
-  </Step>
-  <Step title="Step 3">
-    These are instructions or content that only pertain to the third step.
-  </Step>
-</Steps>
+<Frame>
+  <img src="https://i.postimg.cc/gjtv5bq1/update-plan.jpg" />
+</Frame>
 
-## Troubleshooting
+- Selecting **draw floorplan** will enable you to sketch the polygon for the corresponding unit in the floor plan.
 
-Here's how to solve some common problems when setting up your project.
+<Frame caption="Utilize + and - buttons to zoom in and out, and always remember to save your path after drawing.">
+  <img src="https://i.postimg.cc/MTQ7LFrG/draw-units.jpg" />
+</Frame>
 
-<AccordionGroup>
-  <Accordion title="Planpoint is not loading">
-    Update to Node v18. Run `mintlify install` and try again.
-  </Accordion>
-  <Accordion title="No such file or directory on Planpoint">
-Go to the `C:/Users/Username/.mintlify/` directory and remove the `mint`
-folder. Then Open the Git Bash in this location and run `git clone
-https://github.com/mintlify/mint.git`.
-
-Repeat step 3.
-
-  </Accordion>
-  <Accordion title="Getting an unknown error">
-    Try navigating to the root of your device and delete the ~/.mintlify folder.
-    Then run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
+<Warning>Clicking on the **delete** button will remove the entire floor along with its units.</Warning>
