@@ -87,6 +87,12 @@
       ]
     },
     {
+      "group": "General",
+      "pages": [
+        "api-documentation/introduction"
+      ]
+    },
+    {
       "group": "Endpoint Examples",
       "pages": [
         "api-documentation/endpoint/get",
