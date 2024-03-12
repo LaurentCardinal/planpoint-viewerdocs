@@ -31,7 +31,7 @@
   "tabs": [
     {
       "name": "API",
-      "url": "api-documentation"
+      "url": "/api-documentation/introduction"
     },
     {
       "name": "SDK",
