@@ -20,6 +20,8 @@ api.schedule(function(done) {
 
 ## Fetching a project's data
 
+This is a small description.
+
 ```JavaScript
   async function fetchProject() {
       try {
@@ -42,9 +44,61 @@ api.schedule(function(done) {
     }
 ```
 
+## Fetching a group's data
+
+This is a small description.
+
+```JavaScript
+    async function fetchGroup() {
+      try {
+        const response = await axios({
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          data: {
+            namespace: namespace,
+            hostName: hostName
+          },
+          url: '/api/groups/find'
+        })
+
+        setGroup(response.data)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+```
+
+## Fetching an enterprise's data
+
+This is a small description.
+
+```JavaScript
+    async function fetchEnterprise() {
+      try {
+        const response = await axios({
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          data: {
+            namespace: namespace,
+            hostName: hostName
+          },
+          url: '/api/enterprises/find'
+        })
+
+        setEnterprise(response.data)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+```
+
 <Card
-  title="Plant Store Endpoints"
-  icon="leaf"
+  title="Learn more about JS API"
+  icon="web"
   href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
 >
   View the OpenAPI specification file
