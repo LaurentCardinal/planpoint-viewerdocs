@@ -18,9 +18,29 @@ api.schedule(function(done) {
 }, "when-idle");
 ```
 
-## Welcome
+## Fetching a project's data
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+```JavaScript
+  async function fetchProject() {
+      try {
+        const response = await axios({
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          data: {
+            namespace: namespace,
+            hostName: hostName
+          },
+          url: '/api/projects/find'
+        })
+
+        setProject(response.data)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+```
 
 <Card
   title="Plant Store Endpoints"
