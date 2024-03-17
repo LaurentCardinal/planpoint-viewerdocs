@@ -49,16 +49,6 @@ Check out the result:
   <img src="https://i.postimg.cc/D0BN3rMd/temp-Imaget-Mmy-Bb.avif" />
 </Frame>
 
-You can also load a single unit like this:
-
-```JavaScript
-import * as Planpoint from 'planpoint-sdk';
-import { Unit } from 'planpoint-sdk/core';
-const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
-const renderContext = Planpoint.createRenderContext();
-await renderContext.render(app);
-```
-
 **2. Group View**
 
 The group view allows to inspect individual groups with their corresponding data, including the number of bedrooms, occupancy, status, and others. In a similar way as presented above, you can integrate a group view into your project.
@@ -82,6 +72,45 @@ Here's how it looks:
 <Frame type="glass">
   <img src="https://i.postimg.cc/MKrZJ4N4/temp-Image-HW9-Pn5.avif" />
 </Frame>
+
+**4. Unit View**
+
+The unit view presents singular units with all its relevant data. To get started, you can import a single unit into your project:
+
+```JavaScript
+import * as Planpoint from 'planpoint-sdk';
+import { Unit } from 'planpoint-sdk/core';
+const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
+const renderContext = Planpoint.createRenderContext();
+await renderContext.render(app);
+```
+
+Here's how it looks:
+
+<Frame type="glass">
+  <img src="https://i.postimg.cc/D0BN3rMd/temp-Imaget-Mmy-Bb.avif" />
+</Frame>
+
+In contrast to the first three views, Unit View defines it's own event categories as follows:
+1. action events correspond to unit actions in the form of buttons above the unit gallery.
+2. shortlist events correspond to interactions with the shortlist feature in the top right corner.
+
+Example Event Management Listener configuration for a unit view:
+
+```JavaScript
+import * as Planpoint from 'planpoint-sdk'; 
+import { Unit } from 'planpoint-sdk/core'; 
+const handleActionClick = ({ action }) => { /* ... */ } 
+const handleShortlistToggle = ({ isShortlisted }) => { /* ... */ } 
+const listenerConfig = { action: { click: handleActionClick }, shortlist: { click: handleShortlistToggle, } } 
+const app = (<Unit
+projectId="602e27b829f590001f83a5a2"
+unitName="202"
+listeners={listenerConfig}/> 
+ ) 
+const renderContext = Planpoint.createRenderContext(); 
+await renderContext.render(app);
+```
 
 ## Event Management
 
