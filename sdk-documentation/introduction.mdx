@@ -9,14 +9,30 @@ description: 'In this section, we will be explaining how to use our SDK for impl
 
 Planpoint SDK, or software development kit, offers a collection of tools for developers to integrate Planpoint interfaces to their custom web projects. With a few lines of code, you can enhance your project with interactive and modern user experiences.
 
-The Planpoint SDK facilitates rendering by serving pre-configured React components that allow easy integration. In this section, we will provide general information on how to configure our SDK to implement Plainpoint interfaces into your JavaScript software.
+The Planpoint SDK facilitates rendering by serving **pre-configured React components** that allow easy integration. In this section, we will provide general information on how to configure our SDK to implement Plainpoint interfaces into your JavaScript software.
 
-## React components
+## Getting Started 
+
+In your React project, begin by importing all components of Planpoint SDK:
+
+```JavaScript
+import * as Planpoint from 'planpoint-sdk';
+```
+
+You can alternatively import individual components at a time. For example, importing the project component:
+
+```JavaScript
+import { Project } from 'planpoint-sdk/core';
+```
+
+
+
+
 
 The Planpoint SDK is sending pre-configured React components that allow for easy rendering. It requires the ID of a project that has previously been configured in the dashboard. Loading a project looks like this:
 
 
-```JavaScript JavaScript
+```JavaScript
 import * as Planpoint from 'planpoint-sdk';
 import { Project } from 'planpoint-sdk/core';
 const app = <Project id="602e27b829f590001f83a5a2" />
@@ -26,7 +42,7 @@ await renderContext.render(app);
 
 You can also load a single unit like this:
 
-```JavaScript JavaScript
+```JavaScript
 import * as Planpoint from 'planpoint-sdk';
 import { Unit } from 'planpoint-sdk/core';
 const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
@@ -38,7 +54,7 @@ await renderContext.render(app);
 
 An example listener configuration looks like this:
 
-```JavaScript JavaScript
+```JavaScript
 import * as Planpoint from 'planpoint-sdk';
 import { Project } from 'planpoint-sdk/core';
 const handleStageHover = ({ floorId }) => { /* ... */ }
@@ -65,15 +81,3 @@ const app = <Project id="602e27b829f590001f83a5a2" listeners=
 const renderContext = Planpoint.createRenderContext();
 await renderContext.render(app);
 ```
-
-## Misc.
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [M components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Learn more about JS API"
-  icon="web"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
