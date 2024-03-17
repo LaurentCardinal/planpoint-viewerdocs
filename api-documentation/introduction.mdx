@@ -34,6 +34,11 @@ Planpoint API response status is reflected in the status codes returned with eac
 
 Returns all projects found in a namespace that a host has access to.
 
+```
+POST
+/api/projects/find
+```
+
 ```JavaScript JavaScript using Axios
   async function fetchProject() {
       try {
@@ -60,6 +65,11 @@ Returns all projects found in a namespace that a host has access to.
 
 Returns all groups found in a namespace that a host has access to.
 
+```
+POST
+/api/groups/find
+```
+
 ```JavaScript JavaScript using Axios
     async function fetchGroup() {
       try {
@@ -85,6 +95,11 @@ Returns all groups found in a namespace that a host has access to.
 ## Fetch Enterprise
 
 Returns all enterprises found in a namespace that a host has access to.
+
+```
+POST
+/api/enterprises/find
+```
 
 ```JavaScript JavaScript using Axios
     async function fetchEnterprise() {
