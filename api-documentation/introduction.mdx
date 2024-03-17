@@ -17,18 +17,24 @@ In this section, we will be exploring our public RESTful API. We will explore ho
 
 The Planpoint API features endpoints for every common item of the Planpoint Viewer. This includes projects, groups, enterprises and units. Each of these items have dedicated endpoints that can be consumed by third party applications. 
 
-```JavaScript
-api.schedule(function(done) {
-  performCalculations();
-  done();
-}, "when-idle");
-```
+## Authorization
 
-## Fetching a project's data
+Planpoint API authorizes requests with a valid bearer token. A bearer token is an authorization token that must be included in the header of every request made to Planpoint API.
 
-This is a small description.
+## Response Status Codes
 
-```JavaScript
+Planpoint API response status is reflected in the status codes returned with each response. Here is a list of status codes with their corresponding meaning:
+- 200 OK: Response Successful. The response body will contain relevant data.
+- 400 Bad Request: The request was invalid. This can be caused by missing fields, etc.
+- 401 Unauthorized: Authentication failed. Usually caused by invalid bearer tokens.
+- 403 Forbidden: Authorization to resources failed. The user has a valid bearer token, but is not authorized to access requested data.
+- 500 Internal Server Error: Unexpected error server-side. 
+
+## Fetch Projects
+
+Returns all projects found in a namespace that a host has access to.
+
+```JavaScript using Axios
   async function fetchProject() {
       try {
         const response = await axios({
