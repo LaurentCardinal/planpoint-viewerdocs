@@ -49,6 +49,30 @@ Check out the result:
   <img src="https://i.postimg.cc/D0BN3rMd/temp-Imaget-Mmy-Bb.avif" />
 </Frame>
 
+You can also load a single unit like this:
+
+```JavaScript
+import * as Planpoint from 'planpoint-sdk';
+import { Unit } from 'planpoint-sdk/core';
+const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
+const renderContext = Planpoint.createRenderContext();
+await renderContext.render(app);
+```
+
+**2. Group View**
+
+The group view allows to inspect individual groups with their corresponding data, including the number of bedrooms, occupancy, status, and others. In a similar way as presented above, you can integrate a group view into your project.
+
+Group views share the exact listener configuration with project views - the single difference being the nature of the entity that's passed in _stage_ and _entity_ events. Instead of passing floor ids to _stage_ and _entity_ events, Group Views will pass project ids instead.
+
+Here's how it looks:
+
+<Frame type="glass">
+  <img src="https://i.postimg.cc/jjShnDZC/temp-Imagevahw-Y8.avif" />
+</Frame>
+
+
+
 ## Event Management
 
 Each view rendered with the SDK provides a unique list of events and triggers. You can pass a listener configuration to each component from planpoint-sdk/core to listen for and respond to said events.
@@ -86,17 +110,6 @@ click: handleFilter,
 } }
 const app = <Project id="602e27b829f590001f83a5a2" listeners=
 {listenerConfig} />
-const renderContext = Planpoint.createRenderContext();
-await renderContext.render(app);
-```
-
-
-You can also load a single unit like this:
-
-```JavaScript
-import * as Planpoint from 'planpoint-sdk';
-import { Unit } from 'planpoint-sdk/core';
-const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
 const renderContext = Planpoint.createRenderContext();
 await renderContext.render(app);
 ```
