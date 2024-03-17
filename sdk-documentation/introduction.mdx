@@ -31,7 +31,7 @@ The Plainpoint SDK provides a set of views ready to integrate to your websites. 
 
 There are four core views which can be rendered via the SDK. Let’s have a look at them and their corresponding integrations.
 
-1. Project View
+**1. Project View**
 
 The project view provides a list of current projects with relevant data, including the area, occupancy, price, and others. Integrating the project view in your project  requires the ID of a project that has previously been configured in the dashboard. Loading a project looks like this:
 
@@ -49,20 +49,18 @@ Check out the result:
   <img src="https://i.postimg.cc/D0BN3rMd/temp-Imaget-Mmy-Bb.avif" />
 </Frame>
 
+## Event Management
 
-You can also load a single unit like this:
+Each view rendered with the SDK provides a unique list of events and triggers. You can pass a listener configuration to each component from planpoint-sdk/core to listen for and respond to said events.
 
-```JavaScript
-import * as Planpoint from 'planpoint-sdk';
-import { Unit } from 'planpoint-sdk/core';
-const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
-const renderContext = Planpoint.createRenderContext();
-await renderContext.render(app);
-```
+Project views provide different kinds of events:
 
-## Event management
+1. _stage_ events will listen to events across the image displayed on the right. There's a _hover_ and _click_ event for the floors displayed on the project. Each event will carry the id of the floor in scope.
+2. _filter_ events will fire whenever users click any of the available filter dropdowns along with filters hidden in the _filter_ menu. Each filter event will carry the name of the filter, the previous value as well as the new value. 
+3. _view_ events will fire whenever users toggle full screen, grid or list view. Each event will carry the name of the previous and current view. 
+4. _entity_ events will fire whenever users _hover_ over or _click_ any of the entities listed in the table on the right of the screen. Each event will carry the id of the entity in scope. 
 
-An example listener configuration looks like this:
+Example listener configuration for a project view:
 
 ```JavaScript
 import * as Planpoint from 'planpoint-sdk';
@@ -88,6 +86,17 @@ click: handleFilter,
 } }
 const app = <Project id="602e27b829f590001f83a5a2" listeners=
 {listenerConfig} />
+const renderContext = Planpoint.createRenderContext();
+await renderContext.render(app);
+```
+
+
+You can also load a single unit like this:
+
+```JavaScript
+import * as Planpoint from 'planpoint-sdk';
+import { Unit } from 'planpoint-sdk/core';
+const app = <Unit projectId="602e27b829f590001f83a5a2" unitName="202" />
 const renderContext = Planpoint.createRenderContext();
 await renderContext.render(app);
 ```
