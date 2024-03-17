@@ -25,12 +25,15 @@ You can alternatively import individual components at a time. For example, impor
 import { Project } from 'planpoint-sdk/core';
 ```
 
+## Planpoint Views
 
+The Plainpoint SDK provides a set of views ready to integrate to your websites. Plainpoint will serve ready-to-use graphical components, while handling all processing and data management. 
 
+There are four core views which can be rendered via the SDK. Let’s have a look at them and their corresponding integrations.
 
+1. Project View
 
-The Planpoint SDK is sending pre-configured React components that allow for easy rendering. It requires the ID of a project that has previously been configured in the dashboard. Loading a project looks like this:
-
+The project view provides a list of current projects with relevant data, including the area, occupancy, price, and others. Integrating the project view in your project  requires the ID of a project that has previously been configured in the dashboard. Loading a project looks like this:
 
 ```JavaScript
 import * as Planpoint from 'planpoint-sdk';
@@ -39,6 +42,13 @@ const app = <Project id="602e27b829f590001f83a5a2" />
 const renderContext = Planpoint.createRenderContext();
 await renderContext.render(app);
 ```
+
+Check out the result:
+
+<Frame type="glass">
+  <img src="https://i.postimg.cc/D0BN3rMd/temp-Imaget-Mmy-Bb.avif" />
+</Frame>
+
 
 You can also load a single unit like this:
 
