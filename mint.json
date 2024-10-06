@@ -65,7 +65,9 @@
         "exterior",
         "units",
         "floors",
-        "preview-embed"
+        "preview-embed",
+        "style-embed",
+        "media-gallery"
       ]
     },
     {
@@ -73,7 +75,6 @@
       "pages": [
         "edit-info",
         "members",
-        "media-gallery",
         "multi-phase",
         "colors"
       ]
