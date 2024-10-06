@@ -75,13 +75,13 @@
       "pages": [
         "edit-info",
         "members",
-        "multi-phase",
         "colors"
       ]
     },
     {
       "group": "Advanced Features",
       "pages": [
+        "multi-phase",
         "enterprise",
         "360",
         "amenities-parkings",
