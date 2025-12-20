@@ -8,12 +8,11 @@ description: "Learn how to upload custom CSS to match your floor plan viewer to 
 ### Requirements
 
 - Custom CSS must be enabled in your project settings (see "Enabling Custom CSS" below)
-
 - The custom CSS file must use the correct selectors to work properly (more on this below)
 
 ### Important Note
 
-Even after enabling Custom CSS in your settings, **you must add `?customCss=true` to your embed URLs** for the custom styles to load. Without this parameter, the viewer will use the default theme.
+Even after enabling Custom CSS in your settings, `you must add ?customCss=true to your embed URLs` for the custom styles to load. Without this parameter, the viewer will use the default theme. The embed code contains two such URLs.
 
 **Example:**
 
@@ -28,17 +27,14 @@ https://viewer.planpoint.io/embed/your-project?customCss=true
 ### Step 1: Enable Custom CSS
 
 1. Go to **Style & Embed**
-
-2. Navigate to **Style** → **Custom CSS**
-
-3. Toggle the Custom CSS feature to **Enabled**
+2. Navigate to **Style** → **Use your own CSS**
+3. Upload your file under  **Custom CSS file**
 
 ### Step 2: Download the Default Template
 
 Before creating your custom CSS, download our default theme template as your starting point:
 
 1. In the **Custom CSS** settings section, click **Download Default Template**
-
 2. Save the `planpoint-theme.css` file to your computer
 
 **Why start with the template?** Our template includes all the correct selectors that work with Planpoint's system. Modifying it ensures your custom CSS will work properly.
@@ -50,48 +46,35 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 **Brand Colors**
 
 - Primary and accent colors
-
 - Status indicators (Available, Sold, Reserved)
-
 - Background and text colors
 
 **Typography**
 
 - Font families
-
 - Font sizes for different elements
-
 - Font weights and styles
 
 **Layout & Spacing**
 
 - Padding and margins
-
 - Border radius values
-
 - Grid gaps and alignment
 
 **Visual Effects**
 
 - Box shadows
-
 - Hover effects
-
 - Transitions and animations
 
 ### Step 4: Upload Your Custom CSS
 
 1. Return to **Style & Embed** → **Style** → **Custom CSS**
-
-2. Click **Upload Custom CSS File**
-
-3. Select your modified CSS file
-
-4. Click **Save**
+2. Click **Upload **in Custom CSS File
 
 ### Step 5: Add the URL Parameter
 
-Update your embed code to include the `customCss=true` parameter:
+Update your embed code to include the `customCss=true` parameter. The embed code contains two such URLs.
 
 **Before:**
 
@@ -167,25 +150,25 @@ Our system uses CSS Modules, which means you need to target elements using speci
 
 Here are some frequently customized elements:
 
-| Element | Selector | What it controls |
-|---------|----------|------------------|
-| Main container | `[data-pp-embed]` | Overall viewer wrapper, CSS variables |
-| Layout | `[data-pp-layout]` | Grid layout container |
-| Filters wrapper | `[data-pp-filters-wrapper]` | Filter bar background/styling |
-| Filters | `[data-pp-filters]` | Filter controls section |
-| Unit grid | `[data-pp-unit-grid]` | Grid of unit cards |
-| Unit list | `[data-pp-unit-list]` | Table view of units |
-| Unit cards | `[class*="unitTile"]` | Individual unit listings |
-| Card body | `[class*="unitTileBody"]` | Card content area |
-| Card price | `[class*="unitTilePrice"]` | Price display |
-| Status badges | `[class*="badge"]` | Available/Sold/Reserved labels |
-| Dropdowns | `[class*="dropdownToggle"]` | Filter dropdown buttons |
-| Dropdown menus | `[class*="dropdownMenu"]` | Filter dropdown options |
-| Action buttons | `[class*="unitCardAction"]` | CTA buttons |
-| Modals | `[data-pp-modal]` | Popup windows |
-| Canvas area | `[data-pp-canvas]` | Floor plan display area |
-| Gallery | `[class*="embla"]` | Image carousel |
-| Shortlist button | `[class*="shortlistAction"]` | Favorite/save button |
+| Element          | Selector                     | What it controls                      |
+| ---------------- | ---------------------------- | ------------------------------------- |
+| Main container   | `[data-pp-embed]`            | Overall viewer wrapper, CSS variables |
+| Layout           | `[data-pp-layout]`           | Grid layout container                 |
+| Filters wrapper  | `[data-pp-filters-wrapper]`  | Filter bar background/styling         |
+| Filters          | `[data-pp-filters]`          | Filter controls section               |
+| Unit grid        | `[data-pp-unit-grid]`        | Grid of unit cards                    |
+| Unit list        | `[data-pp-unit-list]`        | Table view of units                   |
+| Unit cards       | `[class*="unitTile"]`        | Individual unit listings              |
+| Card body        | `[class*="unitTileBody"]`    | Card content area                     |
+| Card price       | `[class*="unitTilePrice"]`   | Price display                         |
+| Status badges    | `[class*="badge"]`           | Available/Sold/Reserved labels        |
+| Dropdowns        | `[class*="dropdownToggle"]`  | Filter dropdown buttons               |
+| Dropdown menus   | `[class*="dropdownMenu"]`    | Filter dropdown options               |
+| Action buttons   | `[class*="unitCardAction"]`  | CTA buttons                           |
+| Modals           | `[data-pp-modal]`            | Popup windows                         |
+| Canvas area      | `[data-pp-canvas]`           | Floor plan display area               |
+| Gallery          | `[class*="embla"]`           | Image carousel                        |
+| Shortlist button | `[class*="shortlistAction"]` | Favorite/save button                  |
 
 ---
 
@@ -279,15 +262,10 @@ Here's an example of how to style the availability badges:
 **Check these common issues:**
 
 1. **Missing URL parameter:** Ensure `?customCss=true` is in your embed URL
-
 2. **Custom CSS not enabled:** Verify it's toggled on in Project Settings → Style
-
 3. **Wrong selectors:** Make sure you're using `[class*="className"]` pattern for nested elements, not plain class names or non-existent data attributes
-
-4. **Missing `!important`:** Many styles require `!important` to override defaults
-
+4. **`Missing !important:`** Many styles require `!important` to override defaults
 5. **Cache issues:** Try clearing your browser cache or testing in an incognito window
-
 6. **File upload failed:** Re-upload your CSS file and confirm the save was successful
 
 ### Some elements aren't styling correctly
@@ -295,7 +273,6 @@ Here's an example of how to style the availability badges:
 This usually means you're using selectors that don't match our system:
 
 - ❌ Don't use: `[data-pp-button]`, `[data-pp-unit-tile]`, `.unitTile`
-
 - ✅ Do use: `[class*="button"]`, `[class*="unitTile"]`
 
 Download a fresh copy of the default template and compare your selectors to the working examples included.
