@@ -13,15 +13,13 @@ description: "Learn how to upload custom CSS to match your floor plan viewer to 
 
 ### Important Note
 
-Even after enabling Custom CSS in your settings, \*\*you must add `?customCss=true` to your embed URLs\*\* for the custom styles to load. Without this parameter, the viewer will use the default theme.
+Even after enabling Custom CSS in your settings, **you must add `?customCss=true` to your embed URLs** for the custom styles to load. Without this parameter, the viewer will use the default theme.
 
-\*\*Example:\*\*
+**Example:**
 
-\`\`\`
-
+```
 https://viewer.planpoint.io/embed/your-project?customCss=true
-
-\`\`\`
+```
 
 ---
 
@@ -29,27 +27,27 @@ https://viewer.planpoint.io/embed/your-project?customCss=true
 
 ### Step 1: Enable Custom CSS
 
-1. Go to \*\*Style & Embed\*\*
+1. Go to **Style & Embed**
 
-2. Navigate to \*\*Style\*\* → \*\*Custom CSS\*\*
+2. Navigate to **Style** → **Custom CSS**
 
-3. Toggle the Custom CSS feature to \*\*Enabled\*\*
+3. Toggle the Custom CSS feature to **Enabled**
 
 ### Step 2: Download the Default Template
 
 Before creating your custom CSS, download our default theme template as your starting point:
 
-1. In the \*\*Custom CSS\*\* settings section, click \*\*Download Default Template\*\*
+1. In the **Custom CSS** settings section, click **Download Default Template**
 
 2. Save the `planpoint-theme.css` file to your computer
 
-\*\*Why start with the template?\*\* Our template includes all the correct selectors that work with Planpoint's system. Modifying it ensures your custom CSS will work properly.
+**Why start with the template?** Our template includes all the correct selectors that work with Planpoint's system. Modifying it ensures your custom CSS will work properly.
 
 ### Step 3: Customize Your CSS
 
 Open the downloaded CSS file in any text editor and make your changes. Here's what you can customize:
 
-\*\*Brand Colors\*\*
+**Brand Colors**
 
 - Primary and accent colors
 
@@ -57,7 +55,7 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 
 - Background and text colors
 
-\*\*Typography\*\*
+**Typography**
 
 - Font families
 
@@ -65,7 +63,7 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 
 - Font weights and styles
 
-\*\*Layout & Spacing\*\*
+**Layout & Spacing**
 
 - Padding and margins
 
@@ -73,7 +71,7 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 
 - Grid gaps and alignment
 
-\*\*Visual Effects\*\*
+**Visual Effects**
 
 - Box shadows
 
@@ -83,33 +81,29 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 
 ### Step 4: Upload Your Custom CSS
 
-1. Return to \*\*Style & Embed\*\* → \*\*Style\*\* → \*\*Custom CSS\*\*
+1. Return to **Style & Embed** → **Style** → **Custom CSS**
 
-2. Click \*\*Upload Custom CSS File\*\*
+2. Click **Upload Custom CSS File**
 
 3. Select your modified CSS file
 
-4. Click \*\*Save\*\*
+4. Click **Save**
 
 ### Step 5: Add the URL Parameter
 
 Update your embed code to include the `customCss=true` parameter:
 
-\*\*Before:\*\*
+**Before:**
 
-\`\`\`html
+```html
+<iframe src="https://viewer.planpoint.io/embed/your-project"></iframe>
+```
 
-\<iframe src="https://viewer.planpoint.io/embed/your-project"></iframe>
+**After:**
 
-\`\`\`
-
-\*\*After:\*\*
-
-\`\`\`html
-
-\<iframe src="https://viewer.planpoint.io/embed/your-project?customCss=true">\</iframe>
-
-\`\`\`
+```html
+<iframe src="https://viewer.planpoint.io/embed/your-project?customCss=true"></iframe>
+```
 
 ---
 
@@ -119,130 +113,78 @@ Update your embed code to include the `customCss=true` parameter:
 
 Our system uses CSS Modules, which means you need to target elements using specific attribute selectors and class wildcards. The default template already includes these, but here's what to know if you're adding new styles:
 
-\*\*✅ Correct selectors that work:\*\*
+**✅ Correct selectors that work:**
 
-\`\`\`css
+```css
+/* Data attribute selectors for main containers */
+[data-pp-embed]              /* Main embed wrapper */
+[data-pp-layout]             /* Layout container */
+[data-pp-filters]            /* Filters container */
+[data-pp-filters-wrapper]    /* Filters wrapper with background */
+[data-pp-unit-grid]          /* Unit grid */
+[data-pp-unit-list]          /* Unit list table */
+[data-pp-canvas]             /* Canvas/floor plan area */
+[data-pp-modal]              /* Modal containers */
 
-/\* Data attribute selectors for main containers \*/
+/* Class wildcard selectors for nested elements */
+[data-pp-embed] [class*="header"]             /* Header elements */
+[data-pp-embed] [class*="unitTile"]           /* Unit cards */
+[data-pp-embed] [class*="unitTileBody"]       /* Card body */
+[data-pp-embed] [class*="unitTilePrice"]      /* Price display */
+[data-pp-embed] [class*="unitTileAttrs"]      /* Attributes container */
+[data-pp-embed] [class*="badge"]              /* Status badges */
+[data-pp-embed] [class*="dropdownToggle"]     /* Filter dropdowns */
+[data-pp-embed] [class*="dropdownMenu"]       /* Dropdown menus */
+[data-pp-embed] [class*="unitCardAction"]     /* Action buttons */
+[data-pp-embed] [class*="shortlistAction"]    /* Favorite button */
 
-[data-pp-embed]              /\* Main embed wrapper \*/
+/* Scope-specific selectors */
+[data-pp-scope="project"] [data-pp-layout]    /* Project view layout */
+[data-pp-scope="floor"] [data-pp-layout]      /* Floor view layout */
+[data-pp-scope="unit"] [class*="unitCard"]    /* Unit detail card */
+```
 
-[data-pp-layout]             /\* Layout container \*/
+**❌ Incorrect selectors that won't work:**
 
-[data-pp-filters]            /\* Filters container \*/
+```css
+/* These data attribute selectors are NOT implemented */
+[data-pp-header]         /* Use [class*="header"] instead */
+[data-pp-button]         /* Use [class*="button"] or [class*="unitCardAction"] */
+[data-pp-unit-tile]      /* Use [class*="unitTile"] instead */
+[data-pp-badge]          /* Use [class*="badge"] instead */
+[data-pp-dropdown]       /* Use [class*="dropdown"] instead */
 
-[data-pp-filters-wrapper]    /\* Filters wrapper with background \*/
-
-[data-pp-unit-grid]          /\* Unit grid \*/
-
-[data-pp-unit-list]          /\* Unit list table \*/
-
-[data-pp-canvas]             /\* Canvas/floor plan area \*/
-
-[data-pp-modal]              /\* Modal containers \*/
-
-/\* Class wildcard selectors for nested elements \*/
-
-[data-pp-embed] [class\*="header"]             /\* Header elements \*/
-
-[data-pp-embed] [class\*="unitTile"]           /\* Unit cards \*/
-
-[data-pp-embed] [class\*="unitTileBody"]       /\* Card body \*/
-
-[data-pp-embed] [class\*="unitTilePrice"]      /\* Price display \*/
-
-[data-pp-embed] [class\*="unitTileAttrs"]      /\* Attributes container \*/
-
-[data-pp-embed] [class\*="badge"]              /\* Status badges \*/
-
-[data-pp-embed] [class\*="dropdownToggle"]     /\* Filter dropdowns \*/
-
-[data-pp-embed] [class\*="dropdownMenu"]       /\* Dropdown menus \*/
-
-[data-pp-embed] [class\*="unitCardAction"]     /\* Action buttons \*/
-
-[data-pp-embed] [class\*="shortlistAction"]    /\* Favorite button \*/
-
-/\* Scope-specific selectors \*/
-
-[data-pp-scope="project"] [data-pp-layout]    /\* Project view layout \*/
-
-[data-pp-scope="floor"] [data-pp-layout]      /\* Floor view layout \*/
-
-[data-pp-scope="unit"] [class\*="unitCard"]    /\* Unit detail card \*/
-
-\`\`\`
-
-\*\*❌ Incorrect selectors that won't work:\*\*
-
-\`\`\`css
-
-/\* These data attribute selectors are NOT implemented \*/
-
-[data-pp-header]         /\* Use [class\*="header"] instead \*/
-
-[data-pp-button]         /\* Use [class\*="button"] or [class\*="unitCardAction"] \*/
-
-[data-pp-unit-tile]      /\* Use [class\*="unitTile"] instead \*/
-
-[data-pp-badge]          /\* Use [class\*="badge"] instead \*/
-
-[data-pp-dropdown]       /\* Use [class\*="dropdown"] instead \*/
-
-/\* Plain class names won't work due to CSS Modules \*/
-
+/* Plain class names won't work due to CSS Modules */
 .header
-
 .unitTile
-
 .badge
 
-/\* This attribute doesn't exist \*/
-
+/* This attribute doesn't exist */
 [data-theme="showcase"]
-
-\`\`\`
+```
 
 ### Common Elements You Can Style
 
 Here are some frequently customized elements:
 
 | Element | Selector | What it controls |
-
 |---------|----------|------------------|
-
 | Main container | `[data-pp-embed]` | Overall viewer wrapper, CSS variables |
-
 | Layout | `[data-pp-layout]` | Grid layout container |
-
 | Filters wrapper | `[data-pp-filters-wrapper]` | Filter bar background/styling |
-
 | Filters | `[data-pp-filters]` | Filter controls section |
-
 | Unit grid | `[data-pp-unit-grid]` | Grid of unit cards |
-
 | Unit list | `[data-pp-unit-list]` | Table view of units |
-
 | Unit cards | `[class*="unitTile"]` | Individual unit listings |
-
 | Card body | `[class*="unitTileBody"]` | Card content area |
-
 | Card price | `[class*="unitTilePrice"]` | Price display |
-
 | Status badges | `[class*="badge"]` | Available/Sold/Reserved labels |
-
 | Dropdowns | `[class*="dropdownToggle"]` | Filter dropdown buttons |
-
 | Dropdown menus | `[class*="dropdownMenu"]` | Filter dropdown options |
-
 | Action buttons | `[class*="unitCardAction"]` | CTA buttons |
-
 | Modals | `[data-pp-modal]` | Popup windows |
-
 | Canvas area | `[data-pp-canvas]` | Floor plan display area |
-
 | Gallery | `[class*="embla"]` | Image carousel |
-
 | Shortlist button | `[class*="shortlistAction"]` | Favorite/save button |
 
 ---
@@ -251,73 +193,44 @@ Here are some frequently customized elements:
 
 The template uses CSS custom properties for easy theme-wide changes. Modify these at the top of your CSS file for consistent styling:
 
-\`\`\`css
-
-[data-pp-embed] 
-
-  /\* Brand Colors \*/
-
+```css
+[data-pp-embed] {
+  /* Brand Colors */
   --pp-brand-primary: #5b4cdb;
-
   --pp-brand-secondary: #7c3aed;
-
   --pp-brand-accent: #8b5cf6;
-
   --pp-brand-light: #ede9fe;
 
-  /\* Status Colors \*/
-
+  /* Status Colors */
   --pp-success: #059669;
-
   --pp-success-bg: #d1fae5;
-
   --pp-danger: #dc2626;
-
   --pp-danger-bg: #fee2e2;
-
   --pp-warning: #d97706;
-
   --pp-warning-bg: #fef3c7;
 
-  /\* Neutral Palette \*/
-
+  /* Neutral Palette */
   --pp-white: #ffffff;
-
   --pp-gray-50: #f9fafb;
-
   --pp-gray-100: #f3f4f6;
-
   --pp-gray-200: #e5e7eb;
-
   --pp-gray-500: #6b7280;
-
   --pp-gray-700: #374151;
-
   --pp-gray-900: #111827;
 
-  /\* Shadows \*/
-
+  /* Shadows */
   --pp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-
   --pp-shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-
   --pp-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
 
-  /\* Border Radius \*/
-
+  /* Border Radius */
   --pp-radius-sm: 8px;
-
   --pp-radius-md: 12px;
-
   --pp-radius-lg: 16px;
-
   --pp-radius-xl: 20px;
-
   --pp-radius-full: 9999px;
-
-
-
-\`\`\`
+}
+```
 
 Changing these values will update styling throughout your viewer automatically.
 
@@ -327,59 +240,35 @@ Changing these values will update styling throughout your viewer automatically.
 
 Here's an example of how to style the availability badges:
 
-\`\`\`css
-
-/\* Available badge - green gradient \*/
-
-[data-pp-embed] [class\*="badge"][data-style="available"] 
-
+```css
+/* Available badge - green gradient */
+[data-pp-embed] [class*="badge"][data-style="available"] {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-
   color: #ffffff !important;
-
   font-weight: 600 !important;
-
   padding: 6px 14px !important;
-
   border-radius: 9999px !important;
+}
 
-
-
-/\* Sold badge - red gradient \*/
-
-[data-pp-embed] [class\*="badge"][data-style="sold"] 
-
+/* Sold badge - red gradient */
+[data-pp-embed] [class*="badge"][data-style="sold"] {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
-
   color: #ffffff !important;
-
   font-weight: 600 !important;
-
   padding: 6px 14px !important;
-
   border-radius: 9999px !important;
+}
 
-
-
-/\* Reserved/On Hold badge - gray gradient \*/
-
-[data-pp-embed] [class\*="badge"][data-style="reserved"],
-
-[data-pp-embed] [class\*="badge"][data-style="onhold"] 
-
+/* Reserved/On Hold badge - gray gradient */
+[data-pp-embed] [class*="badge"][data-style="reserved"],
+[data-pp-embed] [class*="badge"][data-style="onhold"] {
   background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
-
   color: #ffffff !important;
-
   font-weight: 600 !important;
-
   padding: 6px 14px !important;
-
   border-radius: 9999px !important;
-
-
-
-\`\`\`
+}
+```
 
 ---
 
@@ -387,19 +276,19 @@ Here's an example of how to style the availability badges:
 
 ### My custom CSS isn't showing up
 
-\*\*Check these common issues:\*\*
+**Check these common issues:**
 
-1. \*\*Missing URL parameter:\*\* Ensure `?customCss=true` is in your embed URL
+1. **Missing URL parameter:** Ensure `?customCss=true` is in your embed URL
 
-2. \*\*Custom CSS not enabled:\*\* Verify it's toggled on in Project Settings → Style
+2. **Custom CSS not enabled:** Verify it's toggled on in Project Settings → Style
 
-3. \*\*Wrong selectors:\*\* Make sure you're using `[class*="className"]` pattern for nested elements, not plain class names or non-existent data attributes
+3. **Wrong selectors:** Make sure you're using `[class*="className"]` pattern for nested elements, not plain class names or non-existent data attributes
 
-4. \*\*Missing `!important`:\*\* Many styles require `!important` to override defaults
+4. **Missing `!important`:** Many styles require `!important` to override defaults
 
-5. \*\*Cache issues:\*\* Try clearing your browser cache or testing in an incognito window
+5. **Cache issues:** Try clearing your browser cache or testing in an incognito window
 
-6. \*\*File upload failed:\*\* Re-upload your CSS file and confirm the save was successful
+6. **File upload failed:** Re-upload your CSS file and confirm the save was successful
 
 ### Some elements aren't styling correctly
 
@@ -417,4 +306,4 @@ Make sure you're adding `!important` to your declarations. CSS Modules generate 
 
 ### How do I reset to the default theme?
 
-In \*\*Style & Embed\*\* → \*\*Style\*\* → \*\*Custom CSS\*\*, click \*\*Remove Custom CSS\*\* or simply remove the `?customCss=true` parameter from your embed URL.
+In **Style & Embed** → **Style** → **Custom CSS**, click **Remove Custom CSS** or simply remove the `?customCss=true` parameter from your embed URL.
