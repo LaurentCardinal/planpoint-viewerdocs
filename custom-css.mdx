@@ -10,15 +10,19 @@ description: "Learn how to upload custom CSS to match your floor plan viewer to 
 - Custom CSS must be enabled in your project settings (see "Enabling Custom CSS" below)
 - The custom CSS file must use the correct selectors to work properly (more on this below)
 
-### Important Note
+### URL Parameter
 
-Even after enabling Custom CSS in your settings, you must add `?customCss=true` to your embed URLs for the custom styles to load. Without this parameter, the viewer will use the default theme. The embed code `contains two such URLs`.
+Even after enabling Custom CSS in your settings, you must add `?customCss=true` to your embed URLs for the custom styles to load. Without this parameter, the viewer will use the default theme. 
 
 **Example:**
 
 ```
 https://app.planpoint.io/your-project?customCss=true
 ```
+
+<Note>
+  **Important note** The Planpoint Viewer embed code contains two such URLs
+</Note>
 
 ---
 
@@ -74,7 +78,7 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 
 ### Step 5: Add the URL Parameter
 
-Update your embed code to include the `customCss=true` parameter. The embed code `contains two such URLs`.
+Update your embed code to include the `customCss=true` parameter. 
 
 **Before:**
 
@@ -87,6 +91,10 @@ Update your embed code to include the `customCss=true` parameter. The embed code
 ```html
 <iframe src="https://app.planpoint.io/your-project?customCss=true"></iframe>
 ```
+
+<Note>
+  **Important note** The Planpoint Viewer embed code contains two such URLs
+</Note>
 
 ---
 
