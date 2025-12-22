@@ -55,7 +55,8 @@
                   "conversion-tracking",
                   "allocations",
                   "zapier",
-                  "lock-screen"
+                  "lock-screen",
+                  "payments"
                 ]
               }
             ]
