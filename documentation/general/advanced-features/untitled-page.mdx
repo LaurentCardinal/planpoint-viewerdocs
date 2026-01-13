@@ -1,0 +1,193 @@
+---
+title: "PostMessage Analytics"
+---
+## Overview
+
+When Planpoint is embedded via iframe, the parent page cannot directly access what happens inside. **PostMessage Analytics** solves this by broadcasting events from the iframe to your page, allowing you to capture and forward them to any analytics tool.
+
+---
+
+## Setup
+
+### 1. Enable in Dashboard
+
+1. Go to **Sales & Marketing → Event Tracking**
+2. Toggle **PostMessage Analytics** on
+3. Select the events you want to track
+4. Click **Select All** for comprehensive tracking
+
+### 2. Copy Embed Code
+
+Go to **Settings → Embed Code** and click "Copy". The generated code automatically includes the analytics listener script when PostMessage Analytics is enabled.
+
+### 3. Uncomment Your Analytics Platform
+
+The embed code includes commented-out lines for common platforms. Uncomment the one you use:
+
+```javascript
+// Send to Google Analytics 4 (uncomment if using gtag)
+// if (typeof gtag !== 'undefined') gtag('event', event.data.event, event.data.data);
+
+// Send to GTM dataLayer (uncomment if using GTM)
+// if (typeof dataLayer !== 'undefined') dataLayer.push({ event: event.data.event, ...event.data.data });
+```
+
+- **Using GA4 with gtag.js?** → Uncomment the `gtag` line
+- **Using Google Tag Manager?** → Uncomment the `dataLayer` line
+- **Using something else?** → Add your own handler (see examples below)
+
+---
+
+## Available Events
+
+| Event | Description |
+|-------|-------------|
+| `project-viewed` | User views a project |
+| `floor-viewed` | User selects a floor |
+| `unit-viewed` | User views a unit detail |
+| `commerce-viewed` | User views a commercial space |
+| `favorite-added` | User adds item to favorites |
+| `favorite-removed` | User removes item from favorites |
+| `filters-applied` | User applies search filters |
+| `contact-form-submitted` | User submits contact form |
+| `share-initiated` | User shares via email |
+| `download-initiated` | User downloads floorplan/brochure |
+| `gallery-opened` | User opens image gallery |
+| `3d-model-viewed` | User opens 3D virtual tour |
+| `portal-signup` | User signs up for portal |
+| `portal-signin` | User signs in to portal |
+| `payment-completed` | User completes a payment |
+
+---
+
+## Integration Examples
+
+### Google Analytics 4 (gtag.js)
+
+```javascript
+window.addEventListener('message', function(event) {
+  if (event.data.type !== 'planpoint-event') return;
+  
+  gtag('event', event.data.event, event.data.data);
+});
+```
+
+### Google Tag Manager
+
+```javascript
+window.addEventListener('message', function(event) {
+  if (event.data.type !== 'planpoint-event') return;
+  
+  dataLayer.push({
+    event: event.data.event,
+    ...event.data.data
+  });
+});
+```
+
+### Custom Handler
+
+```javascript
+window.addEventListener('message', function(event) {
+  if (event.data.type !== 'planpoint-event') return;
+  
+  console.log('Event:', event.data.event);
+  console.log('Data:', event.data.data);
+  
+  // Send to your analytics platform
+  myAnalytics.track(event.data.event, event.data.data);
+});
+```
+
+---
+
+## Event Data Structure
+
+All events follow this format:
+
+```javascript
+{
+  type: 'planpoint-event',
+  event: 'unit-viewed',        // Event name
+  data: {                      // Event-specific data
+    projectId: '...',
+    projectName: '...',
+    unitId: '...',
+    unitName: '...',
+    // Additional fields vary by event
+  }
+}
+```
+
+### Sample Event Payloads
+
+**Unit Viewed:**
+```javascript
+{
+  projectId: "abc123",
+  projectName: "Sunrise Towers",
+  unitId: "unit456",
+  unitName: "Unit 302",
+  floorId: "floor789",
+  floorName: "3rd Floor"
+}
+```
+
+**Contact Form Submitted:**
+```javascript
+{
+  projectId: "abc123",
+  projectName: "Sunrise Towers",
+  unitId: "unit456",
+  formType: "contact"
+}
+```
+
+**Favorite Added:**
+```javascript
+{
+  projectId: "abc123",
+  projectName: "Sunrise Towers",
+  unitId: "unit456",
+  unitName: "Unit 302"
+}
+```
+
+---
+
+## Best Practices
+
+1. **Select only needed events** — Reduces noise in your analytics
+2. **Test in browser console first** — Events log to console by default
+3. **Use GTM for flexibility** — Easier to modify tracking without code changes
+4. **Set up GA4 custom dimensions** — Map `projectName`, `unitName` for better reporting
+
+---
+
+## Troubleshooting
+
+### Events not firing?
+
+- Verify PostMessage Analytics is **enabled** in dashboard
+- Check that specific events are **selected**
+- Regenerate and update your embed code after changing settings
+
+### Events firing but not in GA4?
+
+- Confirm `gtag` is loaded before the listener
+- Check GA4 DebugView for incoming events
+- Verify your GA4 measurement ID is correct
+
+---
+
+## Migration from GTM Code Injection
+
+If you were using the legacy **GTM Code Injection** feature:
+
+| Legacy (GTM Injection) | New (PostMessage Analytics) |
+|------------------------|----------------------------|
+| Injects GTM into Planpoint page | Broadcasts events to parent page |
+| Works for direct page visits | Works for embedded iframes |
+| Limited to GTM | Works with any analytics tool |
+
+For embedded usage, **PostMessage Analytics is recommended**.

@@ -42,6 +42,7 @@
               {
                 "group": "Advanced Features",
                 "pages": [
+                  "documentation/general/advanced-features/untitled-page",
                   "multi-phase",
                   "enterprise",
                   "360",
@@ -66,11 +67,15 @@
             "groups": [
               {
                 "group": "Introduction",
-                "pages": ["api-documentation/introduction"]
+                "pages": [
+                  "api-documentation/introduction"
+                ]
               },
               {
                 "group": "Authentication",
-                "pages": ["api-documentation/endpoint/user/login"]
+                "pages": [
+                  "api-documentation/endpoint/user/login"
+                ]
               },
               {
                 "group": "Groups",
@@ -106,11 +111,14 @@
                   "api-documentation/endpoint/units/id/get",
                   "api-documentation/endpoint/units/post",
                   "api-documentation/endpoint/units/id/patch",
-                  "api-documentation/endpoint/units/id/delete"]
+                  "api-documentation/endpoint/units/id/delete"
+                ]
               },
               {
                 "group": "Leads",
-                "pages": ["api-documentation/endpoint/leads/get"]
+                "pages": [
+                  "api-documentation/endpoint/leads/get"
+                ]
               }
             ]
           },
@@ -130,18 +138,18 @@
       },
       {
         "anchor": "New releases",
-        "href": "https://www.planpoint.io/new-releases/updates",
-        "icon": "newspaper"
+        "icon": "newspaper",
+        "href": "https://www.planpoint.io/new-releases/updates"
       },
       {
         "anchor": "Main website",
-        "href": "https://www.planpoint.io/",
-        "icon": "globe"
+        "icon": "globe",
+        "href": "https://www.planpoint.io/"
       },
       {
         "anchor": "Support",
-        "href": "mailto:support@planpoint.io",
-        "icon": "envelope-dot"
+        "icon": "envelope-dot",
+        "href": "mailto:support@planpoint.io"
       }
     ]
   },
