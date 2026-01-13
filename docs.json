@@ -42,7 +42,6 @@
               {
                 "group": "Advanced Features",
                 "pages": [
-                  "documentation/general/advanced-features/untitled-page",
                   "multi-phase",
                   "enterprise",
                   "360",
@@ -51,6 +50,7 @@
                   "homes-land",
                   "unit-variants",
                   "superframe",
+                  "documentation/general/advanced-features/untitled-page",
                   "amenities-parkings",
                   "custom-buttons",
                   "conversion-tracking",
