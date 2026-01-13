@@ -1,9 +1,10 @@
 ---
-title: "PostMessage Analytics"
+title: "PostMessage Tracking"
 ---
+
 ## Overview
 
-When Planpoint is embedded via iframe, the parent page cannot directly access what happens inside. **PostMessage Analytics** solves this by broadcasting events from the iframe to your page, allowing you to capture and forward them to any analytics tool.
+When Planpoint is embedded via iframe, the parent page cannot directly access what happens inside. **PostMessage Tracking** solves this by broadcasting events from the iframe to your page, allowing you to capture and forward them to any analytics tool.
 
 ---
 
@@ -40,23 +41,23 @@ The embed code includes commented-out lines for common platforms. Uncomment the 
 
 ## Available Events
 
-| Event | Description |
-|-------|-------------|
-| `project-viewed` | User views a project |
-| `floor-viewed` | User selects a floor |
-| `unit-viewed` | User views a unit detail |
-| `commerce-viewed` | User views a commercial space |
-| `favorite-added` | User adds item to favorites |
-| `favorite-removed` | User removes item from favorites |
-| `filters-applied` | User applies search filters |
-| `contact-form-submitted` | User submits contact form |
-| `share-initiated` | User shares via email |
-| `download-initiated` | User downloads floorplan/brochure |
-| `gallery-opened` | User opens image gallery |
-| `3d-model-viewed` | User opens 3D virtual tour |
-| `portal-signup` | User signs up for portal |
-| `portal-signin` | User signs in to portal |
-| `payment-completed` | User completes a payment |
+| Event                    | Description                       |
+| ------------------------ | --------------------------------- |
+| `project-viewed`         | User views a project              |
+| `floor-viewed`           | User selects a floor              |
+| `unit-viewed`            | User views a unit detail          |
+| `commerce-viewed`        | User views a commercial space     |
+| `favorite-added`         | User adds item to favorites       |
+| `favorite-removed`       | User removes item from favorites  |
+| `filters-applied`        | User applies search filters       |
+| `contact-form-submitted` | User submits contact form         |
+| `share-initiated`        | User shares via email             |
+| `download-initiated`     | User downloads floorplan/brochure |
+| `gallery-opened`         | User opens image gallery          |
+| `3d-model-viewed`        | User opens 3D virtual tour        |
+| `portal-signup`          | User signs up for portal          |
+| `portal-signin`          | User signs in to portal           |
+| `payment-completed`      | User completes a payment          |
 
 ---
 
@@ -122,6 +123,7 @@ All events follow this format:
 ### Sample Event Payloads
 
 **Unit Viewed:**
+
 ```javascript
 {
   projectId: "abc123",
@@ -134,6 +136,7 @@ All events follow this format:
 ```
 
 **Contact Form Submitted:**
+
 ```javascript
 {
   projectId: "abc123",
@@ -144,6 +147,7 @@ All events follow this format:
 ```
 
 **Favorite Added:**
+
 ```javascript
 {
   projectId: "abc123",
@@ -184,10 +188,10 @@ All events follow this format:
 
 If you were using the legacy **GTM Code Injection** feature:
 
-| Legacy (GTM Injection) | New (PostMessage Analytics) |
-|------------------------|----------------------------|
+| Legacy (GTM Injection)          | New (PostMessage Analytics)      |
+| ------------------------------- | -------------------------------- |
 | Injects GTM into Planpoint page | Broadcasts events to parent page |
-| Works for direct page visits | Works for embedded iframes |
-| Limited to GTM | Works with any analytics tool |
+| Works for direct page visits    | Works for embedded iframes       |
+| Limited to GTM                  | Works with any analytics tool    |
 
 For embedded usage, **PostMessage Analytics is recommended**.
