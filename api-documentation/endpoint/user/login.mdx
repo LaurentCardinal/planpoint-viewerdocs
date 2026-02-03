@@ -2,3 +2,76 @@
 title: 'Login'
 openapi: 'POST /users/login'
 ---
+## Step-by-Step Guide: Planpoint Login API
+
+### 1. **Prepare Your Request Body**
+
+You'll need to send a JSON payload with the following fields:
+
+- `username`: Your email address (required, must be valid email format)
+- `password`: Your password
+
+### 2. **Set Up the HTTP Request**
+
+Configure a POST request with:
+
+- **Method**: POST
+- **URL**: `https://app.planpoint.io/api/users/login`
+- **Content-Type**: `application/json`
+
+### 3. **Standard Login Flow**
+
+For regular user login, send this request body:
+
+json
+
+`{
+  "username": "your-email@example.com",
+  "password": "your-password"
+}`
+
+Example using cURL:
+
+bash
+
+`curl --request POST \
+  --url https://app.planpoint.io/api/users/login \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "username": "your-email@example.com",
+    "password": "your-password"
+  }'`
+
+### 4. **Handle the Response**
+
+**Success Response (200):**
+
+json
+
+`{
+  "message": "Login successful",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}`
+
+The response includes:
+
+- `access_token`: JWT token for authenticating future API requests
+- HTTP-only cookies are automatically set in your browser:
+    - `planpoint`: Access token (expires in 1 day for regular users, 90 days for Zapier)
+    - `planpointRefresh`: Refresh token (expires in 7 days, not set for Zapier users)
+
+**Error Responses:**
+
+- **400**: Invalid request body (username not an email, etc.)
+- **401**: User not found, incorrect credentials, or unauthorized
+- **403**: Not allowed (for impersonation attempts)
+- **405**: Method not allowed (if not using POST)
+- **500**: Server error
+
+### 5. **Use the Access Token**
+
+For subsequent API requests, use the `access_token` from the response in your Authorization header:
+
+bash
+
+`Authorization: Bearer YOUR_ACCESS_TOKEN`
