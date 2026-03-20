@@ -34,59 +34,273 @@ for p in projects:
     print(p.name, p.namespace)
 ```
 
-## Available Methods
+## API Reference
 
 ### Authentication
 
-| Method | Description |
-| --- | --- |
-| `client.authentication.login` | Authenticate and receive a JWT token |
+#### `client.authentication.login(**kwargs)`
+
+Authenticate and receive a JWT token.
+
+| Param         | Type   | Required | Description              |
+| ------------- | ------ | -------- | ------------------------ |
+| `username`    | `str`  | Yes      | User email               |
+| `password`    | `str`  | No       | User password            |
+| `impersonate` | `bool` | No       | Impersonate another user |
+
+**Returns:** `LoginResponse` — `.token: str`
+
+---
 
 ### Projects
 
-| Method | Description |
-| --- | --- |
-| `client.projects.get_my_projects` | List all projects belonging to the authenticated user |
-| `client.projects.find_project` | Find a public project by namespace and hostname |
-| `client.projects.get_project` | Get a project by ID |
-| `client.projects.update_project` | Update project settings |
+#### `client.projects.get_my_projects()`
+
+List all projects belonging to the authenticated user. Requires auth.
+
+**Returns:** `list[ProjectSummary]` — `.name`, `.namespace`, `.host_name`, `.status`, `.paused`, `.created_at`
+
+---
+
+#### `client.projects.find_project(**kwargs)`
+
+Find a public project by namespace and hostname. No auth required.
+
+| Param       | Type  | Required | Description       |
+| ----------- | ----- | -------- | ----------------- |
+| `namespace` | `str` | Yes      | Project namespace |
+| `host_name` | `str` | Yes      | Allowed hostname  |
+
+**Returns:** `Project` — full project with floors, units, settings
+
+---
+
+#### `client.projects.get_project(**kwargs)`
+
+Get a project by ID. Requires auth.
+
+| Param | Type  | Required | Description      |
+| ----- | ----- | -------- | ---------------- |
+| `id`  | `str` | Yes      | Project ObjectId |
+
+**Returns:** `Project`
+
+---
+
+#### `client.projects.update_project(**kwargs)`
+
+Update project settings. Requires auth.
+
+| Param     | Type   | Required | Description      |
+| --------- | ------ | -------- | ---------------- |
+| `id`      | `str`  | Yes      | Project ObjectId |
+| `request` | `dict` | Yes      | Fields to update |
+
+**Returns:** `Project`
+
+---
 
 ### Groups
 
-| Method | Description |
-| --- | --- |
-| `client.groups.get_groups` | List all groups |
-| `client.groups.get_group` | Get a group by ID |
-| `client.groups.create_group` | Create a new group |
-| `client.groups.update_group` | Update a group |
+#### `client.groups.get_groups()`
+
+List all groups for the authenticated user.
+
+**Returns:** `GroupsListResponse` — `.records: list[Group]`, `.count: int`
+
+---
+
+#### `client.groups.get_group(**kwargs)`
+
+Get a group by ID.
+
+| Param | Type  | Required | Description    |
+| ----- | ----- | -------- | -------------- |
+| `id`  | `str` | Yes      | Group ObjectId |
+
+**Returns:** `Group` — `.name`, `.namespace`, `.host_name`, `.type`, `.projects`, `.is_owner`, `.is_admin`, `.is_editor`
+
+---
+
+#### `client.groups.create_group(**kwargs)`
+
+Create a new group.
+
+| Param           | Type  | Required | Description   |
+| --------------- | ----- | -------- | ------------- |
+| `name`          | `str` | Yes      | Group name    |
+| `namespace`     | `str` | No       | Namespace     |
+| `host_name`     | `str` | No       | Hostname      |
+| `type`          | `str` | No       | Group type    |
+| `property_type` | `str` | No       | Property type |
+
+**Returns:** `Group`
+
+---
+
+#### `client.groups.update_group(**kwargs)`
+
+Update a group.
+
+| Param     | Type   | Required | Description      |
+| --------- | ------ | -------- | ---------------- |
+| `id`      | `str`  | Yes      | Group ObjectId   |
+| `request` | `dict` | Yes      | Fields to update |
+
+**Returns:** `Group`
+
+---
 
 ### Floors
 
-| Method | Description |
-| --- | --- |
-| `client.floors.get_floors` | List all floors for a project |
-| `client.floors.get_floor` | Get a floor by ID |
-| `client.floors.create_floor` | Create a new floor |
-| `client.floors.update_floor` | Update a floor |
+#### `client.floors.get_floors(**kwargs)`
+
+List all floors for a project.
+
+| Param | Type  | Required | Description      |
+| ----- | ----- | -------- | ---------------- |
+| `pid` | `str` | Yes      | Project ObjectId |
+
+**Returns:** `list[FloorFull]` — `.name`, `.project`, `.level`, `.position`, `.path`, `.image`
+
+---
+
+#### `client.floors.get_floor(**kwargs)`
+
+Get a floor by ID.
+
+| Param | Type  | Required | Description    |
+| ----- | ----- | -------- | -------------- |
+| `id`  | `str` | Yes      | Floor ObjectId |
+
+**Returns:** `FloorFull`
+
+---
+
+#### `client.floors.create_floor(**kwargs)`
+
+Create a new floor.
+
+| Param               | Type        | Required | Description               |
+| ------------------- | ----------- | -------- | ------------------------- |
+| `project`           | `dict`      | Yes      | `{"_id": "<project_id>"}` |
+| `name`              | `str`       | Yes      | Floor name                |
+| `position`          | `int`       | No       | Display order             |
+| `path`              | `str`       | No       | SVG/image path            |
+| `alternative_paths` | `list[str]` | No       | Additional paths          |
+
+**Returns:** `FloorFull`
+
+---
+
+#### `client.floors.update_floor(**kwargs)`
+
+Update a floor.
+
+| Param     | Type   | Required | Description      |
+| --------- | ------ | -------- | ---------------- |
+| `id`      | `str`  | Yes      | Floor ObjectId   |
+| `request` | `dict` | Yes      | Fields to update |
+
+**Returns:** `FloorFull`
+
+---
 
 ### Units
 
-| Method | Description |
-| --- | --- |
-| `client.units.get_units` | List all units for a project |
-| `client.units.get_unit` | Get a unit by ID |
-| `client.units.create_unit` | Create a new unit |
-| `client.units.update_unit` | Update a unit |
-| `client.units.delete_unit` | Delete a unit |
-| `client.units.batch_update_units` | Update multiple units at once |
+#### `client.units.get_units(**kwargs)`
+
+List all units for a project.
+
+| Param | Type  | Required | Description      |
+| ----- | ----- | -------- | ---------------- |
+| `pid` | `str` | Yes      | Project ObjectId |
+
+**Returns:** `UnitsListResponse` — `.records: list[UnitFull]`, `.count: int`
+
+`UnitFull` fields: `.floor`, `.name`, `.unit_number`, `.status`, `.price`, `.bed`, `.bath`, `.sqft`, `.model`, `.orientation`, `.parking`
+
+`status` values: `Available` | `OnHold` | `Sold` | `Leased` | `Unavailable`
+
+---
+
+#### `client.units.get_unit(**kwargs)`
+
+Get a unit by ID.
+
+| Param | Type  | Required | Description   |
+| ----- | ----- | -------- | ------------- |
+| `id`  | `str` | Yes      | Unit ObjectId |
+
+**Returns:** `UnitFull`
+
+---
+
+#### `client.units.create_unit(**kwargs)`
+
+Create a new unit.
+
+| Param   | Type   | Required | Description             |
+| ------- | ------ | -------- | ----------------------- |
+| `floor` | `dict` | Yes      | `{"_id": "<floor_id>"}` |
+
+**Returns:** `UnitFull`
+
+---
+
+#### `client.units.update_unit(**kwargs)`
+
+Update a unit.
+
+| Param     | Type   | Required | Description      |
+| --------- | ------ | -------- | ---------------- |
+| `id`      | `str`  | Yes      | Unit ObjectId    |
+| `request` | `dict` | Yes      | Fields to update |
+
+**Returns:** `UnitFull`
+
+---
+
+#### `client.units.delete_unit(**kwargs)`
+
+Delete a unit.
+
+| Param | Type  | Required | Description   |
+| ----- | ----- | -------- | ------------- |
+| `id`  | `str` | Yes      | Unit ObjectId |
+
+**Returns:** `dict` — `{ "message": str }`
+
+---
+
+#### `client.units.batch_update_units(**kwargs)`
+
+Update multiple units at once.
+
+| Param        | Type        | Required | Description              |
+| ------------ | ----------- | -------- | ------------------------ |
+| `ids`        | `list[str]` | Yes      | Unit ObjectIds to update |
+| `patch_data` | `dict`      | Yes      | Fields to apply to all   |
+
+**Returns:** `list[UnitFull]`
+
+---
 
 ### Leads
 
-| Method | Description |
-| --- | --- |
-| `client.leads.get_leads` | List all leads for a project |
+#### `client.leads.get_leads(**kwargs)`
+
+List all leads for a project.
+
+| Param | Type  | Required | Description      |
+| ----- | ----- | -------- | ---------------- |
+| `pid` | `str` | Yes      | Project ObjectId |
+
+**Returns:** `list[Lead]` — `.name`, `.email`, `.phone`, `.message`, `.unit`, `.created_at`
+
+---
 
 ## Links
 
-- [Planpoint App](https://app.planpoint.io)
+- [PlanPoint App](https://app.planpoint.io)
 - [npm TypeScript SDK](https://www.npmjs.com/package/@planpoint/sdk)
