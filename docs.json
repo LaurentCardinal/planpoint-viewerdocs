@@ -131,7 +131,8 @@
                 "group": "SDK Documentation",
                 "pages": [
                   "sdk-documentation/introduction",
-                  "sdk-documentation/java-script"
+                  "sdk-documentation/java-script",
+                  "sdk-documentation/untitled-page"
                 ]
               }
             ]

@@ -1,0 +1,92 @@
+---
+title: 'untitled-page'
+---
+
+# planpoint-sdk
+
+Official Python SDK for the [PlanPoint](https://app.planpoint.io) API.
+
+## Installation
+
+```bash
+pip install planpoint-sdk
+```
+
+## Quick Start
+
+```python
+import planpoint
+
+# 1. Authenticate
+auth_client = planpoint.PlanpointApi(token=None)
+login_response = auth_client.authentication.login(
+    username="you@example.com",
+    password="yourpassword"
+)
+token = login_response.token
+
+# 2. Create an authenticated client
+client = planpoint.PlanpointApi(token=token)
+
+# 3. Fetch your projects
+projects = client.projects.get_my_projects()
+for p in projects:
+    print(p.name, p.namespace)
+```
+
+## Available Methods
+
+### Authentication
+
+| Method                        | Description                          |
+| ----------------------------- | ------------------------------------ |
+| `client.authentication.login` | Authenticate and receive a JWT token |
+
+### Projects
+
+| Method                            | Description                                           |
+| --------------------------------- | ----------------------------------------------------- |
+| `client.projects.get_my_projects` | List all projects belonging to the authenticated user |
+| `client.projects.find_project`    | Find a public project by namespace and hostname       |
+| `client.projects.get_project`     | Get a project by ID                                   |
+| `client.projects.update_project`  | Update project settings                               |
+
+### Groups
+
+| Method                       | Description        |
+| ---------------------------- | ------------------ |
+| `client.groups.get_groups`   | List all groups    |
+| `client.groups.get_group`    | Get a group by ID  |
+| `client.groups.create_group` | Create a new group |
+| `client.groups.update_group` | Update a group     |
+
+### Floors
+
+| Method                       | Description                   |
+| ---------------------------- | ----------------------------- |
+| `client.floors.get_floors`   | List all floors for a project |
+| `client.floors.get_floor`    | Get a floor by ID             |
+| `client.floors.create_floor` | Create a new floor            |
+| `client.floors.update_floor` | Update a floor                |
+
+### Units
+
+| Method                            | Description                   |
+| --------------------------------- | ----------------------------- |
+| `client.units.get_units`          | List all units for a project  |
+| `client.units.get_unit`           | Get a unit by ID              |
+| `client.units.create_unit`        | Create a new unit             |
+| `client.units.update_unit`        | Update a unit                 |
+| `client.units.delete_unit`        | Delete a unit                 |
+| `client.units.batch_update_units` | Update multiple units at once |
+
+### Leads
+
+| Method                   | Description                  |
+| ------------------------ | ---------------------------- |
+| `client.leads.get_leads` | List all leads for a project |
+
+## Links
+
+- [PlanPoint App](https://app.planpoint.io)
+- [npm TypeScript SDK](https://www.npmjs.com/package/@planpoint/sdk)
