@@ -1,6 +1,7 @@
 ---
 title: "JavaScript"
 ---
+
 # @planpoint/sdk
 
 Official TypeScript SDK for the [PlanPoint](https://app.planpoint.io) API.
@@ -37,52 +38,52 @@ console.log(projects); // ProjectSummary[]
 
 ### Authentication
 
-| Method  | Description                          |
-| ------- | ------------------------------------ |
+| Method | Description |
+| --- | --- |
 | `login` | Authenticate and receive a JWT token |
 
 ### Projects
 
-| Method          | Description                                           |
-| --------------- | ----------------------------------------------------- |
+| Method | Description |
+| --- | --- |
 | `getMyProjects` | List all projects belonging to the authenticated user |
-| `findProject`   | Find a public project by namespace and hostname       |
-| `getProject`    | Get a project by ID                                   |
-| `updateProject` | Update project settings                               |
+| `findProject` | Find a public project by namespace and hostname |
+| `getProject` | Get a project by ID |
+| `updateProject` | Update project settings |
 
 ### Groups
 
-| Method        | Description        |
-| ------------- | ------------------ |
-| `getGroups`   | List all groups    |
-| `getGroup`    | Get a group by ID  |
+| Method | Description |
+| --- | --- |
+| `getGroups` | List all groups |
+| `getGroup` | Get a group by ID |
 | `createGroup` | Create a new group |
-| `updateGroup` | Update a group     |
+| `updateGroup` | Update a group |
 
 ### Floors
 
-| Method        | Description                   |
-| ------------- | ----------------------------- |
-| `getFloors`   | List all floors for a project |
-| `getFloor`    | Get a floor by ID             |
-| `createFloor` | Create a new floor            |
-| `updateFloor` | Update a floor                |
+| Method | Description |
+| --- | --- |
+| `getFloors` | List all floors for a project |
+| `getFloor` | Get a floor by ID |
+| `createFloor` | Create a new floor |
+| `updateFloor` | Update a floor |
 
 ### Units
 
-| Method             | Description                   |
-| ------------------ | ----------------------------- |
-| `getUnits`         | List all units for a project  |
-| `getUnit`          | Get a unit by ID              |
-| `createUnit`       | Create a new unit             |
-| `updateUnit`       | Update a unit                 |
-| `deleteUnit`       | Delete a unit                 |
+| Method | Description |
+| --- | --- |
+| `getUnits` | List all units for a project |
+| `getUnit` | Get a unit by ID |
+| `createUnit` | Create a new unit |
+| `updateUnit` | Update a unit |
+| `deleteUnit` | Delete a unit |
 | `batchUpdateUnits` | Update multiple units at once |
 
 ### Leads
 
-| Method     | Description                  |
-| ---------- | ---------------------------- |
+| Method | Description |
+| --- | --- |
 | `getLeads` | List all leads for a project |
 
 ## TypeScript Support
@@ -95,5 +96,5 @@ import type { Project, Unit, Floor, Lead, Group } from "@planpoint/sdk";
 
 ## Links
 
-- [PlanPoint App](https://app.planpoint.io)
+- [Planpoint App](https://app.planpoint.io)
 - [PyPI Python SDK](https://pypi.org/project/planpoint-sdk)
