@@ -15,7 +15,7 @@ npm install @planpoint/sdk
 ## Quick Start
 
 ```ts
-import { login, getMyProjects } from "@planpoint/sdk";
+import { login, getMyProjects, createClient } from "@planpoint/sdk";
 import { createClient } from "@hey-api/client-fetch";
 
 // 1. Authenticate
@@ -26,7 +26,7 @@ const { data } = await login({
 // 2. Create an authenticated client
 const client = createClient({
   baseUrl: "https://app.planpoint.io",
-  headers: { Authorization: `Bearer ${data.token}` },
+  headers: { Authorization: `Bearer ${data.access_token}` },
 });
 
 // 3. Fetch your projects
@@ -34,67 +34,291 @@ const { data: projects } = await getMyProjects({ client });
 console.log(projects); // ProjectSummary[]
 ```
 
-## Available Methods
+## API Reference
 
 ### Authentication
 
-| Method | Description |
-| --- | --- |
-| `login` | Authenticate and receive a JWT token |
+#### `login(options)`
+
+Authenticate and receive a JWT token.
+
+| Param              | Type      | Required | Description              |
+| ------------------ | --------- | -------- | ------------------------ |
+| `body.username`    | `string`  | Yes      | User email               |
+| `body.password`    | `string`  | No       | User password            |
+| `body.impersonate` | `boolean` | No       | Impersonate another user |
+
+**Returns:** `LoginResponse` — `{ message: string, access_token: string }`
+
+---
 
 ### Projects
 
-| Method | Description |
-| --- | --- |
-| `getMyProjects` | List all projects belonging to the authenticated user |
-| `findProject` | Find a public project by namespace and hostname |
-| `getProject` | Get a project by ID |
-| `updateProject` | Update project settings |
+#### `getMyProjects(options)`
+
+List all projects belonging to the authenticated user. Requires auth.
+
+**Returns:** `ProjectSummary[]` — `{ _id, name, namespace?, hostName?, status?, paused?, createdAt? }`
+
+---
+
+#### `findProject(options)`
+
+Find a public project by namespace and hostname. No auth required.
+
+| Param            | Type     | Required | Description       |
+| ---------------- | -------- | -------- | ----------------- |
+| `body.namespace` | `string` | Yes      | Project namespace |
+| `body.hostName`  | `string` | Yes      | Allowed hostname  |
+
+**Returns:** `Project` — full project with floors, units, settings
+
+---
+
+#### `getProject(options)`
+
+Get a project by ID. Requires auth.
+
+| Param     | Type     | Required | Description      |
+| --------- | -------- | -------- | ---------------- |
+| `path.id` | `string` | Yes      | Project ObjectId |
+
+**Returns:** `Project`
+
+---
+
+#### `updateProject(options)`
+
+Update project settings. Requires auth.
+
+| Param     | Type                      | Required | Description      |
+| --------- | ------------------------- | -------- | ---------------- |
+| `path.id` | `string`                  | Yes      | Project ObjectId |
+| `body`    | `Record<string, unknown>` | Yes      | Fields to update |
+
+**Returns:** `Project`
+
+---
 
 ### Groups
 
-| Method | Description |
-| --- | --- |
-| `getGroups` | List all groups |
-| `getGroup` | Get a group by ID |
-| `createGroup` | Create a new group |
-| `updateGroup` | Update a group |
+#### `getGroups(options)`
+
+List all groups for the authenticated user.
+
+**Returns:** `GroupsListResponse` — `{ records: Group[], count: number }`
+
+---
+
+#### `getGroup(options)`
+
+Get a group by ID.
+
+| Param     | Type     | Required | Description    |
+| --------- | -------- | -------- | -------------- |
+| `path.id` | `string` | Yes      | Group ObjectId |
+
+**Returns:** `Group` — `{ _id, name, namespace?, hostName?, type?, projects?, isOwner?, isAdmin?, isEditor? }`
+
+---
+
+#### `createGroup(options)`
+
+Create a new group.
+
+| Param               | Type     | Required | Description   |
+| ------------------- | -------- | -------- | ------------- |
+| `body.name`         | `string` | Yes      | Group name    |
+| `body.namespace`    | `string` | No       | Namespace     |
+| `body.hostName`     | `string` | No       | Hostname      |
+| `body.type`         | `string` | No       | Group type    |
+| `body.propertyType` | `string` | No       | Property type |
+
+**Returns:** `Group`
+
+---
+
+#### `updateGroup(options)`
+
+Update a group.
+
+| Param     | Type                      | Required | Description      |
+| --------- | ------------------------- | -------- | ---------------- |
+| `path.id` | `string`                  | Yes      | Group ObjectId   |
+| `body`    | `Record<string, unknown>` | Yes      | Fields to update |
+
+**Returns:** `Group`
+
+---
 
 ### Floors
 
-| Method | Description |
-| --- | --- |
-| `getFloors` | List all floors for a project |
-| `getFloor` | Get a floor by ID |
-| `createFloor` | Create a new floor |
-| `updateFloor` | Update a floor |
+#### `getFloors(options)`
+
+List all floors for a project.
+
+| Param       | Type     | Required | Description      |
+| ----------- | -------- | -------- | ---------------- |
+| `query.pid` | `string` | Yes      | Project ObjectId |
+
+**Returns:** `FloorFull[]` — `{ _id, name?, project, level?, position?, path?, image? }`
+
+---
+
+#### `getFloor(options)`
+
+Get a floor by ID.
+
+| Param     | Type     | Required | Description    |
+| --------- | -------- | -------- | -------------- |
+| `path.id` | `string` | Yes      | Floor ObjectId |
+
+**Returns:** `FloorFull`
+
+---
+
+#### `createFloor(options)`
+
+Create a new floor.
+
+| Param                   | Type       | Required | Description      |
+| ----------------------- | ---------- | -------- | ---------------- |
+| `body.project._id`      | `string`   | Yes      | Project ObjectId |
+| `body.name`             | `string`   | Yes      | Floor name       |
+| `body.position`         | `number`   | No       | Display order    |
+| `body.path`             | `string`   | No       | SVG/image path   |
+| `body.alternativePaths` | `string[]` | No       | Additional paths |
+
+**Returns:** `FloorFull`
+
+---
+
+#### `updateFloor(options)`
+
+Update a floor.
+
+| Param     | Type                      | Required | Description      |
+| --------- | ------------------------- | -------- | ---------------- |
+| `path.id` | `string`                  | Yes      | Floor ObjectId   |
+| `body`    | `Record<string, unknown>` | Yes      | Fields to update |
+
+**Returns:** `FloorFull`
+
+---
 
 ### Units
 
-| Method | Description |
-| --- | --- |
-| `getUnits` | List all units for a project |
-| `getUnit` | Get a unit by ID |
-| `createUnit` | Create a new unit |
-| `updateUnit` | Update a unit |
-| `deleteUnit` | Delete a unit |
-| `batchUpdateUnits` | Update multiple units at once |
+#### `getUnits(options)`
+
+List all units for a project.
+
+| Param       | Type     | Required | Description      |
+| ----------- | -------- | -------- | ---------------- |
+| `query.pid` | `string` | Yes      | Project ObjectId |
+
+**Returns:** `UnitsListResponse` — `{ records: UnitFull[], count: number }`
+
+`UnitFull`: `{ _id, floor, name?, unitNumber?, status?, price?, bed?, bath?, sqft?, model?, orientation?, parking? }`
+
+`status` values: `Available` | `OnHold` | `Sold` | `Leased` | `Unavailable`
+
+---
+
+#### `getUnit(options)`
+
+Get a unit by ID.
+
+| Param     | Type     | Required | Description   |
+| --------- | -------- | -------- | ------------- |
+| `path.id` | `string` | Yes      | Unit ObjectId |
+
+**Returns:** `UnitFull`
+
+---
+
+#### `createUnit(options)`
+
+Create a new unit.
+
+| Param            | Type     | Required | Description    |
+| ---------------- | -------- | -------- | -------------- |
+| `body.floor._id` | `string` | Yes      | Floor ObjectId |
+
+**Returns:** `UnitFull`
+
+---
+
+#### `updateUnit(options)`
+
+Update a unit.
+
+| Param     | Type                      | Required | Description      |
+| --------- | ------------------------- | -------- | ---------------- |
+| `path.id` | `string`                  | Yes      | Unit ObjectId    |
+| `body`    | `Record<string, unknown>` | Yes      | Fields to update |
+
+**Returns:** `UnitFull`
+
+---
+
+#### `deleteUnit(options)`
+
+Delete a unit.
+
+| Param     | Type     | Required | Description   |
+| --------- | -------- | -------- | ------------- |
+| `path.id` | `string` | Yes      | Unit ObjectId |
+
+**Returns:** `{ message: string }`
+
+---
+
+#### `batchUpdateUnits(options)`
+
+Update multiple units at once.
+
+| Param            | Type                      | Required | Description              |
+| ---------------- | ------------------------- | -------- | ------------------------ |
+| `body.ids`       | `string[]`                | Yes      | Unit ObjectIds to update |
+| `body.patchData` | `Record<string, unknown>` | Yes      | Fields to apply to all   |
+
+**Returns:** `UnitFull[]`
+
+---
 
 ### Leads
 
-| Method | Description |
-| --- | --- |
-| `getLeads` | List all leads for a project |
+#### `getLeads(options)`
+
+List all leads for a project.
+
+| Param       | Type     | Required | Description      |
+| ----------- | -------- | -------- | ---------------- |
+| `query.pid` | `string` | Yes      | Project ObjectId |
+
+**Returns:** `Lead[]` — `{ _id?, name?, email?, phone?, message?, unit?, createdAt? }`
+
+---
 
 ## TypeScript Support
 
 All methods are fully typed. Import types directly:
 
 ```ts
-import type { Project, Unit, Floor, Lead, Group } from "@planpoint/sdk";
+import type {
+  Project,
+  ProjectSummary,
+  Group,
+  GroupsListResponse,
+  FloorFull,
+  UnitFull,
+  UnitsListResponse,
+  Lead,
+  LoginResponse,
+} from "@planpoint/sdk";
 ```
 
 ## Links
 
-- [Planpoint App](https://app.planpoint.io)
+- [PlanPoint App](https://app.planpoint.io)
 - [PyPI Python SDK](https://pypi.org/project/planpoint-sdk)
