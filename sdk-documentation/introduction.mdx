@@ -1,6 +1,6 @@
 ---
-title: Introduction to Planpoint SDK
-description: Integrate real estate project data into your application with the official Planpoint SDK.
+title: "Introduction to Planpoint's SDKs"
+description: "Integrate real estate project data into your application with the official Planpoint SDK."
 ---
 
 ## Overview
@@ -15,18 +15,23 @@ Use it to build custom dashboards, automate unit management, sync availability w
   <Card title="Authenticate" icon="key">
     Log in with your Planpoint credentials and receive a JWT token to make authenticated requests.
   </Card>
+
   <Card title="Manage Projects" icon="building">
     List your projects, retrieve full project details including floors, units, and display settings.
   </Card>
+
   <Card title="Manage Units" icon="table-cells">
     Create, update, delete, and batch-update units. Control status, pricing, bedrooms, and more.
   </Card>
+
   <Card title="Manage Floors" icon="layer-group">
     Create and update floor plans, set display order, and attach SVG paths or images.
   </Card>
+
   <Card title="Manage Groups" icon="folder-tree">
     Organize multiple projects under groups. Control team access with owner, admin, and editor roles.
   </Card>
+
   <Card title="Access Leads" icon="users">
     Retrieve leads submitted through your project's contact forms, including contact details and unit interest.
   </Card>
@@ -61,12 +66,15 @@ Unit status can be one of: `Available`, `OnHold`, `Sold`, `Leased`, or `Unavaila
 <CardGroup cols={2}>
   <Card title="TypeScript / JavaScript" icon="js" href="https://viewerdocs.planpoint.io/sdk-documentation/java-script">
     Install via npm. Works in Node.js and browser environments.
+
     ```bash
     npm install @planpoint/sdk
     ```
   </Card>
+
   <Card title="Python" icon="python" href="https://viewerdocs.planpoint.io/sdk-documentation/untitled-page">
-    Install via pip. Works with Python 3.8+.
+    Install via pip. Works with Python 3.8\+.
+
     ```bash
     pip install planpoint-sdk
     ```
@@ -77,7 +85,7 @@ Unit status can be one of: `Available`, `OnHold`, `Sold`, `Leased`, or `Unavaila
 
 All API requests are made to:
 
-```
+```text
 https://app.planpoint.io
 ```
 
