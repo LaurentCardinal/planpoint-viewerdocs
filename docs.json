@@ -132,7 +132,8 @@
                 "pages": [
                   "sdk-documentation/introduction",
                   "sdk-documentation/java-script",
-                  "sdk-documentation/untitled-page"
+                  "sdk-documentation/untitled-page",
+                  "sdk-documentation/go"
                 ]
               }
             ]
