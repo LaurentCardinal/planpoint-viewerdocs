@@ -133,10 +133,11 @@
                   "sdk-documentation/introduction",
                   "sdk-documentation/java-script",
                   "sdk-documentation/untitled-page",
-                  "sdk-documentation/go"
+                  "sdk-documentation/go",
+                  "untitled-page",
+                  "sdk-documentation/php"
                 ]
-              },
-              "untitled-page"
+              }
             ]
           }
         ]
