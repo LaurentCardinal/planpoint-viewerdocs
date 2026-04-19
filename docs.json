@@ -126,7 +126,7 @@
           },
           {
             "tab": "SDK",
-            "groups": [
+            "pages": [
               {
                 "group": "SDK Documentation",
                 "pages": [
@@ -135,7 +135,8 @@
                   "sdk-documentation/untitled-page",
                   "sdk-documentation/go"
                 ]
-              }
+              },
+              "untitled-page"
             ]
           }
         ]
