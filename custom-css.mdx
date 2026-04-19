@@ -10,19 +10,14 @@ description: "Learn how to upload custom CSS to match your floor plan viewer to 
 - Custom CSS must be enabled in your project settings (see "Enabling Custom CSS" below)
 - The custom CSS file must use the correct selectors to work properly (more on this below)
 
-### URL Parameter
+### Important Note
 
-Even after enabling Custom CSS in your settings, you must add `?customCss=true` to your embed URLs for the custom styles to load. Without this parameter, the viewer will use the default theme. 
+Even after enabling Custom CSS in your settings, **you must add `?customCss=true` to your embed URLs** for the custom styles to load. Without this parameter, the viewer will use the default theme.
 
 **Example:**
-
 ```
-https://app.planpoint.io/your-project?customCss=true
+https://viewer.planpoint.io/embed/your-project?customCss=true
 ```
-
-<Note>
-  **Important note** The Planpoint Viewer embed code contains two such URLs
-</Note>
 
 ---
 
@@ -31,8 +26,8 @@ https://app.planpoint.io/your-project?customCss=true
 ### Step 1: Enable Custom CSS
 
 1. Go to **Style & Embed**
-2. Navigate to **Style** → **Use your own CSS**
-3. Upload your file under  **Custom CSS file**
+2. Navigate to **Style** → **Custom CSS**
+3. Toggle the Custom CSS feature to **Enabled**
 
 ### Step 2: Download the Default Template
 
@@ -48,25 +43,21 @@ Before creating your custom CSS, download our default theme template as your sta
 Open the downloaded CSS file in any text editor and make your changes. Here's what you can customize:
 
 **Brand Colors**
-
 - Primary and accent colors
 - Status indicators (Available, Sold, Reserved)
 - Background and text colors
 
 **Typography**
-
 - Font families
 - Font sizes for different elements
 - Font weights and styles
 
 **Layout & Spacing**
-
 - Padding and margins
 - Border radius values
 - Grid gaps and alignment
 
 **Visual Effects**
-
 - Box shadows
 - Hover effects
 - Transitions and animations
@@ -74,27 +65,23 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 ### Step 4: Upload Your Custom CSS
 
 1. Return to **Style & Embed** → **Style** → **Custom CSS**
-2. Click **Upload** in Custom CSS File
+2. Click **Upload Custom CSS File**
+3. Select your modified CSS file
+4. Click **Save**
 
 ### Step 5: Add the URL Parameter
 
-Update your embed code to include the `customCss=true` parameter. 
+Update your embed code to include the `customCss=true` parameter:
 
 **Before:**
-
 ```html
-<iframe src="https://app.planpoint.io/your-project"></iframe>
+<iframe src="https://viewer.planpoint.io/embed/your-project"></iframe>
 ```
 
 **After:**
-
 ```html
-<iframe src="https://app.planpoint.io/your-project?customCss=true"></iframe>
+<iframe src="https://viewer.planpoint.io/embed/your-project?customCss=true"></iframe>
 ```
-
-<Note>
-  **Important note** The Planpoint Viewer embed code contains two such URLs
-</Note>
 
 ---
 
@@ -105,20 +92,31 @@ Update your embed code to include the `customCss=true` parameter.
 Our system uses CSS Modules, which means you need to target elements using specific attribute selectors and class wildcards. The default template already includes these, but here's what to know if you're adding new styles:
 
 **✅ Correct selectors that work:**
-
 ```css
 /* Data attribute selectors for main containers */
 [data-pp-embed]              /* Main embed wrapper */
+[data-pp-container]          /* Inner container */
 [data-pp-layout]             /* Layout container */
+[data-pp-header]             /* Portal header bar */
+[data-pp-cta-desktop]        /* Header CTA button (desktop) */
+[data-pp-cta-mobile]         /* Header CTA button (mobile) */
 [data-pp-filters]            /* Filters container */
 [data-pp-filters-wrapper]    /* Filters wrapper with background */
+[data-pp-glass-filters]      /* Glass-style filter variant */
 [data-pp-unit-grid]          /* Unit grid */
 [data-pp-unit-list]          /* Unit list table */
+[data-pp-unit-view]          /* Unit view container */
+[data-pp-amenity-view]       /* Amenity view container */
+[data-pp-commerce-view]      /* Commerce view container */
 [data-pp-canvas]             /* Canvas/floor plan area */
 [data-pp-modal]              /* Modal containers */
 
+/* Scope-specific selectors */
+[data-pp-scope="project"]    /* Project view */
+[data-pp-scope="floor"]      /* Floor view */
+[data-pp-scope="unit"]       /* Unit detail view */
+
 /* Class wildcard selectors for nested elements */
-[data-pp-embed] [class*="header"]             /* Header elements */
 [data-pp-embed] [class*="unitTile"]           /* Unit cards */
 [data-pp-embed] [class*="unitTileBody"]       /* Card body */
 [data-pp-embed] [class*="unitTilePrice"]      /* Price display */
@@ -136,14 +134,14 @@ Our system uses CSS Modules, which means you need to target elements using speci
 ```
 
 **❌ Incorrect selectors that won't work:**
-
 ```css
 /* These data attribute selectors are NOT implemented */
-[data-pp-header]         /* Use [class*="header"] instead */
 [data-pp-button]         /* Use [class*="button"] or [class*="unitCardAction"] */
 [data-pp-unit-tile]      /* Use [class*="unitTile"] instead */
 [data-pp-badge]          /* Use [class*="badge"] instead */
 [data-pp-dropdown]       /* Use [class*="dropdown"] instead */
+[data-pp-list]           /* Use [data-pp-unit-list] or [data-pp-unit-grid] */
+[data-pp-floor]          /* Use [data-pp-scope="floor"] instead */
 
 /* Plain class names won't work due to CSS Modules */
 .header
@@ -158,25 +156,33 @@ Our system uses CSS Modules, which means you need to target elements using speci
 
 Here are some frequently customized elements:
 
-| Element          | Selector                     | What it controls                      |
-| ---------------- | ---------------------------- | ------------------------------------- |
-| Main container   | `[data-pp-embed]`            | Overall viewer wrapper, CSS variables |
-| Layout           | `[data-pp-layout]`           | Grid layout container                 |
-| Filters wrapper  | `[data-pp-filters-wrapper]`  | Filter bar background/styling         |
-| Filters          | `[data-pp-filters]`          | Filter controls section               |
-| Unit grid        | `[data-pp-unit-grid]`        | Grid of unit cards                    |
-| Unit list        | `[data-pp-unit-list]`        | Table view of units                   |
-| Unit cards       | `[class*="unitTile"]`        | Individual unit listings              |
-| Card body        | `[class*="unitTileBody"]`    | Card content area                     |
-| Card price       | `[class*="unitTilePrice"]`   | Price display                         |
-| Status badges    | `[class*="badge"]`           | Available/Sold/Reserved labels        |
-| Dropdowns        | `[class*="dropdownToggle"]`  | Filter dropdown buttons               |
-| Dropdown menus   | `[class*="dropdownMenu"]`    | Filter dropdown options               |
-| Action buttons   | `[class*="unitCardAction"]`  | CTA buttons                           |
-| Modals           | `[data-pp-modal]`            | Popup windows                         |
-| Canvas area      | `[data-pp-canvas]`           | Floor plan display area               |
-| Gallery          | `[class*="embla"]`           | Image carousel                        |
-| Shortlist button | `[class*="shortlistAction"]` | Favorite/save button                  |
+| Element | Selector | What it controls |
+|---------|----------|------------------|
+| Main container | `[data-pp-embed]` | Overall viewer wrapper, CSS variables |
+| Inner container | `[data-pp-container]` | Inner container element |
+| Layout | `[data-pp-layout]` | Grid layout container |
+| Portal header | `[data-pp-header]` | Header bar with logo and CTAs |
+| Header CTA (desktop) | `[data-pp-cta-desktop]` | Desktop call-to-action button |
+| Header CTA (mobile) | `[data-pp-cta-mobile]` | Mobile call-to-action button |
+| Filters wrapper | `[data-pp-filters-wrapper]` | Filter bar background/styling |
+| Filters | `[data-pp-filters]` | Filter controls section |
+| Glass filters | `[data-pp-glass-filters]` | Glass-style filter variant |
+| Unit grid | `[data-pp-unit-grid]` | Grid of unit cards |
+| Unit list | `[data-pp-unit-list]` | Table view of units |
+| Unit cards | `[class*="unitTile"]` | Individual unit listings |
+| Card body | `[class*="unitTileBody"]` | Card content area |
+| Card price | `[class*="unitTilePrice"]` | Price display |
+| Status badges | `[class*="badge"]` | Available/Sold/Reserved labels |
+| Dropdowns | `[class*="dropdownToggle"]` | Filter dropdown buttons |
+| Dropdown menus | `[class*="dropdownMenu"]` | Filter dropdown options |
+| Action buttons | `[class*="unitCardAction"]` | CTA buttons |
+| Modals | `[data-pp-modal]` | Popup windows |
+| Canvas area | `[data-pp-canvas]` | Floor plan display area |
+| Unit view | `[data-pp-unit-view]` | Unit view container |
+| Amenity view | `[data-pp-amenity-view]` | Amenity view container |
+| Commerce view | `[data-pp-commerce-view]` | Commerce view container |
+| Gallery | `[class*="embla"]` | Image carousel |
+| Shortlist button | `[class*="shortlistAction"]` | Favorite/save button |
 
 ---
 
@@ -272,7 +278,7 @@ Here's an example of how to style the availability badges:
 1. **Missing URL parameter:** Ensure `?customCss=true` is in your embed URL
 2. **Custom CSS not enabled:** Verify it's toggled on in Project Settings → Style
 3. **Wrong selectors:** Make sure you're using `[class*="className"]` pattern for nested elements, not plain class names or non-existent data attributes
-4. **`Missing !important:`** Many styles require `!important` to override defaults
+4. **Missing `!important`:** Many styles require `!important` to override defaults
 5. **Cache issues:** Try clearing your browser cache or testing in an incognito window
 6. **File upload failed:** Re-upload your CSS file and confirm the save was successful
 
