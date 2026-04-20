@@ -1,3 +1,7 @@
+---
+title: "Python"
+---
+
 # planpoint-sdk
 
 Official Python SDK for the [Planpoint](https://app.planpoint.io) API.
@@ -38,11 +42,11 @@ for p in projects:
 
 Authenticate and receive a JWT token.
 
-| Param         | Type   | Required | Description              |
-| ------------- | ------ | -------- | ------------------------ |
-| `username`    | `str`  | Yes      | User email               |
-| `password`    | `str`  | No       | User password            |
-| `impersonate` | `bool` | No       | Impersonate another user |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `username` | `str` | Yes | User email |
+| `password` | `str` | No | User password |
+| `impersonate` | `bool` | No | Impersonate another user |
 
 **Returns:** `LoginResponse` — `.token: str`
 
@@ -62,10 +66,10 @@ List all projects belonging to the authenticated user. Requires auth.
 
 Find a public project by namespace and hostname. No auth required.
 
-| Param       | Type  | Required | Description       |
-| ----------- | ----- | -------- | ----------------- |
-| `namespace` | `str` | Yes      | Project namespace |
-| `host_name` | `str` | Yes      | Allowed hostname  |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `namespace` | `str` | Yes | Project namespace |
+| `host_name` | `str` | Yes | Allowed hostname |
 
 **Returns:** `Project` — full project with floors, units, settings
 
@@ -75,9 +79,9 @@ Find a public project by namespace and hostname. No auth required.
 
 Get a project by ID. Requires auth.
 
-| Param | Type  | Required | Description      |
-| ----- | ----- | -------- | ---------------- |
-| `id`  | `str` | Yes      | Project ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Project ObjectId |
 
 **Returns:** `Project`
 
@@ -87,10 +91,10 @@ Get a project by ID. Requires auth.
 
 Update project settings. Requires auth.
 
-| Param     | Type   | Required | Description      |
-| --------- | ------ | -------- | ---------------- |
-| `id`      | `str`  | Yes      | Project ObjectId |
-| `request` | `dict` | Yes      | Fields to update |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Project ObjectId |
+| `request` | `dict` | Yes | Fields to update |
 
 **Returns:** `Project`
 
@@ -110,9 +114,9 @@ List all groups for the authenticated user.
 
 Get a group by ID.
 
-| Param | Type  | Required | Description    |
-| ----- | ----- | -------- | -------------- |
-| `id`  | `str` | Yes      | Group ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Group ObjectId |
 
 **Returns:** `Group` — `.name`, `.namespace`, `.host_name`, `.type`, `.projects`, `.is_owner`, `.is_admin`, `.is_editor`
 
@@ -122,13 +126,13 @@ Get a group by ID.
 
 Create a new group.
 
-| Param           | Type  | Required | Description   |
-| --------------- | ----- | -------- | ------------- |
-| `name`          | `str` | Yes      | Group name    |
-| `namespace`     | `str` | No       | Namespace     |
-| `host_name`     | `str` | No       | Hostname      |
-| `type`          | `str` | No       | Group type    |
-| `property_type` | `str` | No       | Property type |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | `str` | Yes | Group name |
+| `namespace` | `str` | No | Namespace |
+| `host_name` | `str` | No | Hostname |
+| `type` | `str` | No | Group type |
+| `property_type` | `str` | No | Property type |
 
 **Returns:** `Group`
 
@@ -138,10 +142,10 @@ Create a new group.
 
 Update a group.
 
-| Param     | Type   | Required | Description      |
-| --------- | ------ | -------- | ---------------- |
-| `id`      | `str`  | Yes      | Group ObjectId   |
-| `request` | `dict` | Yes      | Fields to update |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Group ObjectId |
+| `request` | `dict` | Yes | Fields to update |
 
 **Returns:** `Group`
 
@@ -153,9 +157,9 @@ Update a group.
 
 List all floors for a project.
 
-| Param | Type  | Required | Description      |
-| ----- | ----- | -------- | ---------------- |
-| `pid` | `str` | Yes      | Project ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `pid` | `str` | Yes | Project ObjectId |
 
 **Returns:** `list[FloorFull]` — `.name`, `.project`, `.level`, `.position`, `.path`, `.image`
 
@@ -165,9 +169,9 @@ List all floors for a project.
 
 Get a floor by ID.
 
-| Param | Type  | Required | Description    |
-| ----- | ----- | -------- | -------------- |
-| `id`  | `str` | Yes      | Floor ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Floor ObjectId |
 
 **Returns:** `FloorFull`
 
@@ -177,13 +181,13 @@ Get a floor by ID.
 
 Create a new floor.
 
-| Param               | Type        | Required | Description               |
-| ------------------- | ----------- | -------- | ------------------------- |
-| `project`           | `dict`      | Yes      | `{"_id": "<project_id>"}` |
-| `name`              | `str`       | Yes      | Floor name                |
-| `position`          | `int`       | No       | Display order             |
-| `path`              | `str`       | No       | SVG/image path            |
-| `alternative_paths` | `list[str]` | No       | Additional paths          |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `project` | `dict` | Yes | `{"_id": "<project_id>"}` |
+| `name` | `str` | Yes | Floor name |
+| `position` | `int` | No | Display order |
+| `path` | `str` | No | SVG/image path |
+| `alternative_paths` | `list[str]` | No | Additional paths |
 
 **Returns:** `FloorFull`
 
@@ -193,10 +197,10 @@ Create a new floor.
 
 Update a floor.
 
-| Param     | Type   | Required | Description      |
-| --------- | ------ | -------- | ---------------- |
-| `id`      | `str`  | Yes      | Floor ObjectId   |
-| `request` | `dict` | Yes      | Fields to update |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Floor ObjectId |
+| `request` | `dict` | Yes | Fields to update |
 
 **Returns:** `FloorFull`
 
@@ -208,9 +212,9 @@ Update a floor.
 
 List all units for a project.
 
-| Param | Type  | Required | Description      |
-| ----- | ----- | -------- | ---------------- |
-| `pid` | `str` | Yes      | Project ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `pid` | `str` | Yes | Project ObjectId |
 
 **Returns:** `UnitsListResponse` — `.records: list[UnitFull]`, `.count: int`
 
@@ -224,9 +228,9 @@ List all units for a project.
 
 Get a unit by ID.
 
-| Param | Type  | Required | Description   |
-| ----- | ----- | -------- | ------------- |
-| `id`  | `str` | Yes      | Unit ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Unit ObjectId |
 
 **Returns:** `UnitFull`
 
@@ -236,9 +240,9 @@ Get a unit by ID.
 
 Create a new unit.
 
-| Param   | Type   | Required | Description             |
-| ------- | ------ | -------- | ----------------------- |
-| `floor` | `dict` | Yes      | `{"_id": "<floor_id>"}` |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `floor` | `dict` | Yes | `{"_id": "<floor_id>"}` |
 
 **Returns:** `UnitFull`
 
@@ -248,10 +252,10 @@ Create a new unit.
 
 Update a unit.
 
-| Param     | Type   | Required | Description      |
-| --------- | ------ | -------- | ---------------- |
-| `id`      | `str`  | Yes      | Unit ObjectId    |
-| `request` | `dict` | Yes      | Fields to update |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Unit ObjectId |
+| `request` | `dict` | Yes | Fields to update |
 
 **Returns:** `UnitFull`
 
@@ -261,9 +265,9 @@ Update a unit.
 
 Delete a unit.
 
-| Param | Type  | Required | Description   |
-| ----- | ----- | -------- | ------------- |
-| `id`  | `str` | Yes      | Unit ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | Yes | Unit ObjectId |
 
 **Returns:** `dict` — `{ "message": str }`
 
@@ -273,10 +277,10 @@ Delete a unit.
 
 Update multiple units at once.
 
-| Param        | Type        | Required | Description              |
-| ------------ | ----------- | -------- | ------------------------ |
-| `ids`        | `list[str]` | Yes      | Unit ObjectIds to update |
-| `patch_data` | `dict`      | Yes      | Fields to apply to all   |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ids` | `list[str]` | Yes | Unit ObjectIds to update |
+| `patch_data` | `dict` | Yes | Fields to apply to all |
 
 **Returns:** `list[UnitFull]`
 
@@ -288,9 +292,9 @@ Update multiple units at once.
 
 List all leads for a project.
 
-| Param | Type  | Required | Description      |
-| ----- | ----- | -------- | ---------------- |
-| `pid` | `str` | Yes      | Project ObjectId |
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `pid` | `str` | Yes | Project ObjectId |
 
 **Returns:** `list[Lead]` — `.name`, `.email`, `.phone`, `.message`, `.unit`, `.created_at`
 
@@ -298,7 +302,7 @@ List all leads for a project.
 
 ## Links
 
-- **[Install on PyPI: pip install planpoint-sdk](https://pypi.org/project/planpoint-sdk)**
+- [**Install on PyPI: pip install planpoint-sdk**](https://pypi.org/project/planpoint-sdk)
 - [Planpoint App](https://app.planpoint.io)
 - [TypeScript SDK on npm](https://www.npmjs.com/package/@planpoint/sdk)
 - [Go SDK on GitHub](https://github.com/planpoint-io/planpoint-sdk-go)
