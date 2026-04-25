@@ -15,11 +15,14 @@ description: "Learn how to upload custom CSS to match your floor plan viewer to 
 Even after enabling Custom CSS in your settings, **you must add `?customCss=true` to your embed URLs** for the custom styles to load. Without this parameter, the viewer will use the default theme.
 
 **Example:**
-```
+
+```text
 https://viewer.planpoint.io/embed/your-project?customCss=true
 ```
 
 ---
+
+<video controls className="w-full aspect-video rounded-xl" src="https://streamable.com/5kgjr6" />
 
 ## How to Set Up Custom CSS
 
@@ -43,21 +46,25 @@ Before creating your custom CSS, download our default theme template as your sta
 Open the downloaded CSS file in any text editor and make your changes. Here's what you can customize:
 
 **Brand Colors**
+
 - Primary and accent colors
 - Status indicators (Available, Sold, Reserved)
 - Background and text colors
 
 **Typography**
+
 - Font families
 - Font sizes for different elements
 - Font weights and styles
 
 **Layout & Spacing**
+
 - Padding and margins
 - Border radius values
 - Grid gaps and alignment
 
 **Visual Effects**
+
 - Box shadows
 - Hover effects
 - Transitions and animations
@@ -74,11 +81,13 @@ Open the downloaded CSS file in any text editor and make your changes. Here's wh
 Update your embed code to include the `customCss=true` parameter:
 
 **Before:**
+
 ```html
 <iframe src="https://viewer.planpoint.io/embed/your-project"></iframe>
 ```
 
 **After:**
+
 ```html
 <iframe src="https://viewer.planpoint.io/embed/your-project?customCss=true"></iframe>
 ```
@@ -92,6 +101,7 @@ Update your embed code to include the `customCss=true` parameter:
 Our system uses CSS Modules, which means you need to target elements using specific attribute selectors and class wildcards. The default template already includes these, but here's what to know if you're adding new styles:
 
 **✅ Correct selectors that work:**
+
 ```css
 /* Data attribute selectors for main containers */
 [data-pp-embed]              /* Main embed wrapper */
@@ -134,6 +144,7 @@ Our system uses CSS Modules, which means you need to target elements using speci
 ```
 
 **❌ Incorrect selectors that won't work:**
+
 ```css
 /* These data attribute selectors are NOT implemented */
 [data-pp-button]         /* Use [class*="button"] or [class*="unitCardAction"] */
@@ -157,7 +168,7 @@ Our system uses CSS Modules, which means you need to target elements using speci
 Here are some frequently customized elements:
 
 | Element | Selector | What it controls |
-|---------|----------|------------------|
+| --- | --- | --- |
 | Main container | `[data-pp-embed]` | Overall viewer wrapper, CSS variables |
 | Inner container | `[data-pp-container]` | Inner container element |
 | Layout | `[data-pp-layout]` | Grid layout container |
