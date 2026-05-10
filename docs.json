@@ -38,7 +38,8 @@
                   "link-units",
                   "documentation/general/editing-and-management/themes",
                   "colors",
-                  "documentation/general/editing-and-management/terminology"
+                  "documentation/general/editing-and-management/terminology",
+                  "documentation/general/advanced-features/forms"
                 ]
               },
               {
@@ -47,7 +48,6 @@
                   "multi-phase",
                   "enterprise-new",
                   "360",
-                  "documentation/general/advanced-features/forms",
                   "custom-css",
                   "homes-land",
                   "unit-variants",
