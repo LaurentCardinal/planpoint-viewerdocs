@@ -26,8 +26,9 @@
                   "exterior",
                   "units",
                   "floors",
+                  "media-gallery",
                   "preview-embed",
-                  "media-gallery"
+                  "documentation/general/advanced-features/forms"
                 ]
               },
               {
@@ -35,11 +36,10 @@
                 "pages": [
                   "edit-info",
                   "members",
-                  "link-units",
                   "documentation/general/editing-and-management/themes",
                   "colors",
                   "documentation/general/editing-and-management/terminology",
-                  "documentation/general/advanced-features/forms"
+                  "link-units"
                 ]
               },
               {
