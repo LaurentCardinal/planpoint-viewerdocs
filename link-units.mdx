@@ -1,12 +1,151 @@
 ---
-title: 'Link to units'
-descriptions: 'This section explains how to create direct links to specific units inside your plan viewwer'
+title: "Deep Linking to specific units"
+descriptions: "This section explains how to create direct links to specific units inside your plan viewwer"
 ---
 
-This feature is extremely useful for marketing purposes. For example, you can create an email campaign for a specific set of units (such as penthouses) and directly link to those specific units inside your plan viewer, inside your website!
+## What Is This?
 
-The basic parameter structure for your URL, as shown in the video below, is like so: `www.project.com/plans?f=floorname&u=unitname` where `floorname` and `unitname` are your own values.
+By default, your Planpoint embed opens at the top-level view when a visitor lands on your page. Deep-linking lets you share a URL that skips straight to a specific unit — useful for email campaigns, ads, or any page where you want to highlight a particular listing.
 
-### Here's a video guide:
+---
 
-<iframe src="https://streamable.com/e/vcty93" width="100%" height="400px"> </iframe>
+## Before You Start
+
+This guide assumes you already have a Planpoint embed on your website. If you haven't set that up yet, follow the [How to Embed](https://viewerdocs.planpoint.io/preview-embed#how-to-embed) Planpoint on your website guide first, then come back here.
+
+---
+
+## Step-by-Step
+
+### Step 1 — Find your unit's details
+
+In your Planpoint dashboard, open the project that contains the unit you want to link to and note down:
+
+- **The unit name** — the number or label shown on the unit card (e.g. `202`, `Unit A`)
+- **The floor name** _(optional)_ — the floor that unit is on (e.g. `Floor 2`). Only needed if the same unit name appears on more than one floor
+- **The project name** _(group and enterprise embeds only)_ — the full project name as entered in your dashboard (e.g. `Riverside Tower`). Only needed if multiple projects in your group or enterprise share unit names
+
+### Step 2 — Go to the page where your embed lives
+
+Open the page on your website that contains the Planpoint embed. Copy its full URL from the browser address bar.
+
+Example:
+
+```text
+https://yourwebsite.com/apartments
+```
+
+### Step 3 — Add the parameters
+
+Append `?u=` followed by the unit name to the end of your URL:
+
+```text
+https://yourwebsite.com/apartments?u=202
+```
+
+If you also want to specify the floor:
+
+```text
+https://yourwebsite.com/apartments?f=Floor%202&u=202
+```
+
+If you have a group or enterprise embed and want to pin to a specific project:
+
+```text
+https://yourwebsite.com/apartments?p=Riverside%20Tower&f=Floor%202&u=202
+```
+
+### Step 4 — Test the link
+
+Paste the URL into a new browser tab. The embed should open directly on the unit you specified. If it opens on the main view instead, double-check that the unit name, floor name, and project name match exactly what is in your dashboard.
+
+### Step 5 — Use the link
+
+You can now use this URL anywhere — in an email, an ad, a button on another page, or a QR code.
+
+---
+
+## Parameter Reference
+
+| Param | What it does | Required? |
+| --- | --- | --- |
+| `u` | The unit name to open | Yes |
+| `f` | Narrows the search to a specific floor | Optional |
+| `p` | Narrows the search to a specific project | Optional — only needed for group/enterprise embeds when unit names repeat across projects |
+
+---
+
+## Usage by Embed Type
+
+### Project Embed
+
+`f` and `p` are both optional. `?u=202` alone is enough:
+
+```text
+https://yourwebsite.com/your-page?u=202
+```
+
+If the same unit number exists on multiple floors, add `f` to be precise:
+
+```text
+https://yourwebsite.com/your-page?f=Floor%202&u=202
+```
+
+### Group Embed
+
+Works the same way. Add `p` only if multiple projects share the same unit names:
+
+```text
+https://yourwebsite.com/your-page?p=Riverside%20Tower&f=Floor%202&u=202
+```
+
+If the project has the **Skip Floor Step** setting enabled (used for commercial spaces with no floors), use `u` alone — there is no floor to specify:
+
+```text
+https://yourwebsite.com/your-page?u=Shop%20A
+```
+
+### Enterprise Embed
+
+Same as group, but searches across all projects and groups within the enterprise:
+
+```text
+https://yourwebsite.com/your-page?p=Riverside%20Tower&f=Floor%202&u=202
+```
+
+---
+
+## Matching Rules
+
+- **Unit name (`u`)** — must match exactly, including capitalisation (e.g. `202`, `Unit A`)
+- **Floor name (`f`)** — must match exactly, including capitalisation (e.g. `Floor 2`, `Level 3`)
+- **Project name (`p`)** — case-insensitive exact match (`p=riverside tower` matches "Riverside Tower")
+- When `p` is omitted in a group or enterprise embed, the first unit with a matching name is opened
+
+---
+
+## URL Encoding
+
+Spaces and special characters must be percent-encoded in URLs:
+
+| Character | Encoded form |
+| --- | --- |
+| Space | `%20` |
+| `&` | `%26` |
+| `#` | `%23` |
+
+So "Floor 2" becomes `Floor%202` and "Riverside Tower" becomes `Riverside%20Tower`.
+
+Most website builders (Webflow, WordPress, Squarespace) handle this automatically when you paste a URL into a link field.
+
+---
+
+## Quick Examples
+
+| Goal | Add to your page URL |
+| --- | --- |
+| Open unit 202 | `?u=202` |
+| Open unit 202 on Floor 2 | `?f=Floor%202&u=202` |
+| Open unit 202 in project "Riverside Tower" (group/enterprise) | `?p=Riverside%20Tower&u=202` |
+| Open unit 202 on Floor 2 in "Riverside Tower" (group/enterprise) | `?p=Riverside%20Tower&f=Floor%202&u=202` |
+| Open commercial space "Shop A" (project with Skip Floor Step enabled) | `?u=Shop%20A` |

@@ -38,8 +38,7 @@
                   "members",
                   "documentation/general/editing-and-management/themes",
                   "colors",
-                  "documentation/general/editing-and-management/terminology",
-                  "link-units"
+                  "documentation/general/editing-and-management/terminology"
                 ]
               },
               {
@@ -54,6 +53,7 @@
                   "superframe",
                   "documentation/general/advanced-features/post-message",
                   "conversion-tracking",
+                  "link-units",
                   "amenities-parkings",
                   "custom-buttons",
                   "allocations",
