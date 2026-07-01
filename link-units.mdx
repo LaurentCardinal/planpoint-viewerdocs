@@ -5,7 +5,7 @@ descriptions: "This section explains how to create direct links to specific unit
 
 ## What Is This?
 
-By default, your Planpoint embed opens at the top-level view when a visitor lands on your page. Deep-linking lets you share a URL that skips straight to a specific unit — useful for email campaigns, ads, or any page where you want to highlight a particular listing.
+By default, your Planpoint embed opens at the top-level view when a visitor lands on your page. Deep-linking lets you share a URL that skips straight to a specific **unit** — or to a whole **collection** (a curated group of units, such as “The City Studios”). It's useful for email campaigns, ads, or any page where you want to highlight a particular listing or collection.
 
 ---
 
@@ -22,6 +22,8 @@ This guide assumes you already have a Planpoint embed on your website. If you ha
 In your Planpoint dashboard, open the project that contains the unit you want to link to and note down:
 
 - **The unit name** — the number or label shown on the unit card (e.g. `202`, `Unit A`)
+- **The collection name** _(optional)_ — the collection you want to open (e.g. `The City Studios`), exactly as named in your dashboard. Use this to land on a whole collection instead of a single unit
+- **The collection link slug** _(optional)_ — only needed for [pretty-path links](#pretty-path-links-using-your-page-url). Set it on the collection's **Edit** screen (e.g. `city-studios`)
 - **The floor name** _(optional)_ — the floor that unit is on (e.g. `Floor 2`). Only needed if the same unit name appears on more than one floor
 - **The project name** _(group and enterprise embeds only)_ — the full project name as entered in your dashboard (e.g. `Riverside Tower`). Only needed if multiple projects in your group or enterprise share unit names
 
@@ -55,6 +57,14 @@ If you have a group or enterprise embed and want to pin to a specific project:
 https://yourwebsite.com/apartments?p=Riverside%20Tower&f=Floor%202&u=202
 ```
 
+To open a whole **collection** instead of a single unit, use `?c=` followed by the collection name:
+
+```text
+https://yourwebsite.com/apartments?c=The%20City%20Studios
+```
+
+> **Shortcut:** In your dashboard, open the project's **Collections** tab and click **Copy link** next to any collection. This copies a ready-made deep-link for that collection — no need to build the URL by hand.
+
 ### Step 4 — Test the link
 
 Paste the URL into a new browser tab. The embed should open directly on the unit you specified. If it opens on the main view instead, double-check that the unit name, floor name, and project name match exactly what is in your dashboard.
@@ -69,7 +79,8 @@ You can now use this URL anywhere — in an email, an ad, a button on another pa
 
 | Param | What it does | Required? |
 | --- | --- | --- |
-| `u` | The unit name to open | Yes |
+| `u` | The unit name to open | Yes — unless you're linking to a collection with `c` |
+| `c` | The collection to open | Yes — unless you're linking to a unit with `u` |
 | `f` | Narrows the search to a specific floor | Optional |
 | `p` | Narrows the search to a specific project | Optional — only needed for group/enterprise embeds when unit names repeat across projects |
 
@@ -113,6 +124,30 @@ Same as group, but searches across all projects and groups within the enterprise
 https://yourwebsite.com/your-page?p=Riverside%20Tower&f=Floor%202&u=202
 ```
 
+### Linking to a Collection
+
+Collections work with project, group, and enterprise embeds. Use `c` on its own to open straight on a collection:
+
+```text
+https://yourwebsite.com/your-page?c=The%20City%20Studios
+```
+
+In a group or enterprise embed, Planpoint automatically opens the project that owns the collection — you don't need to add `p`.
+
+### Pretty-Path Links (using your page URL)
+
+If your collections live behind tidy URLs like:
+
+```text
+https://yourwebsite.com/pricelist/city-studios
+```
+
+Planpoint can open the matching collection automatically — no `?c=` needed. It reads the **last segment of the page path** (`city-studios` above) and opens the collection whose **link slug** matches it.
+
+Set the slug in your dashboard: open the project's **Collections** tab, click **Edit** on a collection, and set the **Link slug** field (e.g. `city-studios`). It defaults to a slug based on the collection name, so most collections work out of the box — only change it if you want it to match a specific path on your site.
+
+This works on any platform (Webflow, WordPress, Squarespace, etc.) with no extra setup — just add the embed to the page. If a path segment doesn't match any collection, nothing changes and the embed opens normally. A `?c=` in the URL always takes priority over the path.
+
 ---
 
 ## Matching Rules
@@ -120,6 +155,7 @@ https://yourwebsite.com/your-page?p=Riverside%20Tower&f=Floor%202&u=202
 - **Unit name (`u`)** — must match exactly, including capitalisation (e.g. `202`, `Unit A`)
 - **Floor name (`f`)** — must match exactly, including capitalisation (e.g. `Floor 2`, `Level 3`)
 - **Project name (`p`)** — case-insensitive exact match (`p=riverside tower` matches "Riverside Tower")
+- **Collection name (`c`)** — case-insensitive exact match (`c=the city studios` matches "The City Studios")
 - When `p` is omitted in a group or enterprise embed, the first unit with a matching name is opened
 
 ---
@@ -145,7 +181,15 @@ Most website builders (Webflow, WordPress, Squarespace) handle this automaticall
 | Goal | Add to your page URL |
 | --- | --- |
 | Open unit 202 | `?u=202` |
+| Open the "The City Studios" collection | `?c=The%20City%20Studios` |
+| Open a collection from a pretty path | `yourwebsite.com/pricelist/city-studios` (set the collection's **Link slug** to `city-studios`) |
 | Open unit 202 on Floor 2 | `?f=Floor%202&u=202` |
 | Open unit 202 in project "Riverside Tower" (group/enterprise) | `?p=Riverside%20Tower&u=202` |
 | Open unit 202 on Floor 2 in "Riverside Tower" (group/enterprise) | `?p=Riverside%20Tower&f=Floor%202&u=202` |
 | Open commercial space "Shop A" (project with Skip Floor Step enabled) | `?u=Shop%20A` |
+
+---
+
+## Locked or Portal-Protected Viewers
+
+If your viewer uses a Lock Screen or portal login, deep-links still work. The visitor is asked to log in or register first, and is then taken straight to the linked unit or collection — the link is never skipped, so your lead capture stays intact.
